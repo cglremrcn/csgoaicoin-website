@@ -575,16 +575,141 @@
         }
 
         /* Mobile Responsive */
-        @media (max-width: 480px) {
-            .chat-window {
-                width: calc(100vw - 40px);
-                height: 60vh;
-                bottom: 80px;
-                right: 20px;
-            }
+        /* Mobile Responsive (Bottom Sheet Style) */
+        /* Mobile Responsive (Bottom Sheet Style) */
+        @media (max-width: 768px) {
             .widget-container {
-                right: 20px;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                right: auto !important;
+                bottom: auto !important;
+                z-index: 999999;
+                pointer-events: none; /* Let clicks pass through to site */
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: flex-end;
+                padding: 0;
+                background: transparent;
+            }
+
+            .chat-button {
+                position: fixed;
                 bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                pointer-events: auto; /* Re-enable clicks */
+                z-index: 1000000;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            }
+
+            /* Hide button when chat is open */
+            .chat-button.open {
+                display: none !important;
+            }
+
+            .chat-window {
+                position: absolute; /* Relative to fixed container */
+                bottom: 0;
+                left: 0;
+                width: 100% !important;
+                height: 85vh !important;
+                border-radius: 20px 20px 0 0 !important;
+                margin: 0 !important;
+                background: rgba(2, 4, 6, 0.98);
+                border: none;
+                border-top: 1px solid var(--glass-border);
+                transform-origin: bottom center;
+                pointer-events: auto; /* Re-enable clicks */
+                z-index: 1000001;
+                /* Reset desktop transform */
+                transform: translateY(100%);
+                opacity: 0;
+                transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+            }
+
+            .chat-window.active {
+                transform: translateY(0) !important;
+                opacity: 1 !important;
+            }
+
+            .chat-input-area {
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
+
+            /* Show Close Button on Mobile */
+            #closeChat {
+                display: flex !important;
+            }
+
+            /* Better Readability on Mobile */
+            .message {
+                font-size: 15px;
+                padding: 14px 18px;
+            }
+
+            .chat-input {
+                font-size: 16px;
+                padding: 14px;
+            }
+
+            /* Narrow Screen Optimizations (Galaxy S8+, iPhone SE, etc.) */
+            @media (max-width: 380px) {
+                .chat-header {
+                    padding: 10px 12px !important;
+                }
+
+                .header-title {
+                    font-size: 13px !important;
+                }
+
+                .header-logo {
+                    width: 20px !important;
+                    height: 20px !important;
+                    margin-right: 5px !important;
+                }
+
+                .rank-badge {
+                    display: none !important; /* Hide rank on very small screens to save space */
+                }
+
+                .theme-btn {
+                    font-size: 0 !important; /* Hide text */
+                    padding: 6px !important;
+                    width: 32px !important;
+                    height: 32px !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                }
+
+                .theme-btn::after {
+                    content: '☯'; /* Icon for theme switch */
+                    font-size: 16px !important;
+                }
+
+                .quick-chips {
+                    flex-wrap: nowrap !important;
+                    overflow-x: auto !important;
+                    justify-content: flex-start !important;
+                    padding-bottom: 5px !important;
+                    -webkit-overflow-scrolling: touch;
+                }
+
+                .chip {
+                    flex: 0 0 auto !important; /* Don't shrink */
+                    font-size: 11px !important;
+                    padding: 6px 10px !important;
+                }
+                
+                /* Hide scrollbar for chips */
+                .quick-chips::-webkit-scrollbar {
+                    display: none;
+                }
             }
         }
     `;
@@ -606,6 +731,9 @@
                 <div class="header-actions">
                     <button class="icon-btn" id="clearChat" title="Clear Chat">
                         <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+                    </button>
+                    <button class="icon-btn" id="closeChat" title="Close Chat" style="display: none;">
+                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
                     </button>
                     <button class="theme-btn" id="themeToggle">SWITCH TEAM</button>
                 </div>
@@ -700,6 +828,7 @@
     const typingIndicator = shadow.querySelector('.typing-indicator');
     const themeToggle = shadow.querySelector('#themeToggle');
     const clearChatBtn = shadow.querySelector('#clearChat');
+    const closeChatBtn = shadow.querySelector('#closeChat');
     const chips = shadow.querySelectorAll('.chip');
     const notificationBubble = shadow.querySelector('.notification-bubble');
 
@@ -825,6 +954,15 @@
             themeToggle.style.borderColor = '#ff9900';
         }
     });
+
+    // Close Chat
+    if (closeChatBtn) {
+        closeChatBtn.addEventListener('click', () => {
+            isOpen = false;
+            chatWindow.classList.remove('active');
+            chatButton.classList.remove('open');
+        });
+    }
 
     // Toggle Chat
     chatButton.addEventListener('click', () => {
@@ -1169,6 +1307,8 @@
                 reply = data.response;
             } else if (data.choices && data.choices[0]) {
                 reply = data.choices[0].message.content;
+            } else if (data.error) {
+                reply = "Error: " + data.error;
             } else {
                 reply = "Error: Could not get response.";
             }
