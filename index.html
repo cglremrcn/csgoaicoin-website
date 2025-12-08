@@ -4,33 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="ZaCBSI8n3uQoOefkXe00dBZ8Tankk2LpYzwGN0O_KsE" />
-    <title>CSGOAI - AI-Powered Gaming Revolution</title>
+    <meta name="google-site-verification" content="Md1ehuFnYp4YhK6DQ5mQfxLjvojvq1Fdljmw4h-tZJE" />
+    <title>CSAI - AI-Powered Gaming Revolution</title>
     <meta name="description"
-        content="CSGOAI is a Solana-based token delivering AI-driven in-game analytics, rewards & airdrops, and a secure trading layer for competitive play.">
+        content="CSAI is a Solana-based token delivering AI-driven in-game analytics, rewards & airdrops, and a secure trading layer for competitive play.">
 
     <!-- SEO Meta Tags -->
 
     <link rel="icon" type="image/png" href="logos/csgo_coinlogo4.png">
-    <meta property="og:title" content="CSGOAI - AI-Powered Gaming Revolution">
-    <meta property="og:image" content="https://csgoaicoin.com/logos/csgo_coinlogo4.png">
-    <meta property="og:url" content="https://csgoaicoin.com/">
+    <meta property="og:title" content="CSAI - AI-Powered Gaming Revolution">
+    <meta property="og:image" content="https://csaicoin.com/logos/csgo_coinlogo4.png">
+    <meta property="og:url" content="https://csaicoin.com/">
     <meta property="og:type" content="website">
-    <link rel="canonical" href="https://csgoaicoin.com/">
+    <link rel="canonical" href="https://csaicoin.com/">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "CSGOAI",
-      "url": "https://csgoaicoin.com"
+      "name": "CSAI",
+      "url": "https://csaicoin.com"
     }
     </script>
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://csgoaicoin.com/logos/csgo_coinlogo4.png">
+    <meta name="twitter:image" content="https://csaicoin.com/logos/csgo_coinlogo4.png">
 
     <!-- External Resources -->
     <script src="https://cdn.tailwindcss.com/3.4.0"></script>
@@ -49,8 +49,15 @@
             --secondary-color: #764ba2;
             --accent-color: #fbbf24;
             --text-color: #ffffff;
-            --bg-color: #0a0a0f;
+            --bg-color: #050508;
             --transition-speed: 0.3s;
+
+            /* Premium Neon Colors */
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff00ff;
+            --neon-orange: #ff6b00;
+            --neon-gold: #ffd700;
+            --glass-premium: rgba(255, 255, 255, 0.03);
         }
 
         /* Reset and Base Styles */
@@ -70,6 +77,520 @@
 
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Custom Neon Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--neon-cyan), var(--primary-color), var(--neon-magenta));
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--neon-magenta), var(--neon-cyan));
+            box-shadow: 0 0 15px var(--neon-magenta);
+        }
+
+        /* Noise Texture Overlay - DESKTOP ONLY */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ========================================
+           MOBILE PERFORMANCE OPTIMIZATIONS
+           ======================================== */
+        @media (max-width: 768px) {
+
+            /* Disable noise texture on mobile */
+            body::before {
+                display: none !important;
+            }
+
+            /* Simplify scrollbar on mobile */
+            ::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: var(--primary-color);
+                box-shadow: none;
+            }
+
+            /* Reduce glow effects on mobile */
+            .neon-glow,
+            .neon-glow-magenta,
+            .neon-glow-orange {
+                box-shadow: none !important;
+            }
+
+            /* Disable heavy animations */
+            .floating-orb {
+                display: none !important;
+            }
+
+            /* Simplify glass effects */
+            .glass,
+            .glass-premium {
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+            }
+
+            /* Disable 3D tilt on mobile */
+            .card-3d,
+            .card-3d-inner {
+                transform: none !important;
+            }
+
+            /* Reduce aurora animation complexity */
+            .hero-gradient {
+                animation: none !important;
+            }
+
+            /* Simplify button animations */
+            .btn-primary:hover {
+                transform: scale(1.02) !important;
+            }
+
+            /* Disable breathing glow */
+            .breathing-glow {
+                animation: none !important;
+            }
+
+            /* Reduce scroll progress glow */
+            .scroll-progress {
+                box-shadow: none;
+                height: 2px;
+            }
+        }
+
+        /* Respect reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .floating-orb {
+                display: none;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-orange));
+            z-index: 99999;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-magenta);
+        }
+
+        /* Premium Page Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--neon-cyan);
+            border-right-color: var(--neon-magenta);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loader-text {
+            margin-top: 20px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse-text 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse-text {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Magnetic Button Effect */
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Text Reveal Animation */
+        .text-reveal {
+            overflow: hidden;
+        }
+
+        .text-reveal span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .text-reveal.revealed span {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered Animation Delays */
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-5 {
+            animation-delay: 0.5s;
+        }
+
+        /* ========================================
+           UNIQUE VISUAL EFFECTS
+           ======================================== */
+
+        /* 1. Smoke Trail Cursor */
+        .smoke-particle {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(150, 150, 150, 0.6) 0%, transparent 70%);
+            filter: blur(3px);
+            z-index: 9998;
+            animation: smokeFade 1.5s ease-out forwards;
+        }
+
+        @keyframes smokeFade {
+            0% {
+                opacity: 0.7;
+                transform: scale(1) translate(-50%, -50%);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(3) translate(-50%, -50%) translateY(-30px);
+            }
+        }
+
+        /* 2. Text Scramble Effect */
+        .scramble-text {
+            display: inline-block;
+        }
+
+        .scramble-text .char {
+            display: inline-block;
+            transition: all 0.1s ease;
+        }
+
+        .scramble-text .char.scrambling {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* 3. 3D Token Spinner - With Thickness */
+        .token-3d-container {
+            perspective: 800px;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto;
+        }
+
+        .token-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: tokenSpin 4s linear infinite;
+            cursor: grab;
+        }
+
+        .token-3d:active {
+            cursor: grabbing;
+            animation-play-state: paused;
+        }
+
+        .token-3d-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            backface-visibility: hidden;
+            border: 8px solid #b87800;
+        }
+
+        .token-3d-front {
+            background: radial-gradient(circle at 30% 30%, #ffe066 0%, #ffd700 40%, #cc8800 100%);
+            transform: translateZ(6px);
+            box-shadow:
+                0 0 30px rgba(255, 215, 0, 0.5),
+                inset -3px -3px 15px rgba(0, 0, 0, 0.2),
+                inset 3px 3px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .token-3d-back {
+            background: radial-gradient(circle at 30% 30%, #ffcc00 0%, #ff9900 40%, #cc6600 100%);
+            transform: rotateY(180deg) translateZ(6px);
+            box-shadow:
+                0 0 30px rgba(255, 153, 0, 0.5),
+                inset -3px -3px 15px rgba(0, 0, 0, 0.2),
+                inset 3px 3px 15px rgba(255, 255, 255, 0.3);
+            color: #000;
+        }
+
+        /* Coin edge - simple solid layers */
+        .coin-edge {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #A67C00;
+            border: 3px solid #8B6914;
+            box-sizing: border-box;
+        }
+
+        @keyframes tokenSpin {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        /* 5. Eyes Follow Cursor */
+        .follow-eye {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .follow-eye-pupil {
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle at 30% 30%, #333, #000);
+            border-radius: 50%;
+            position: absolute;
+            transition: transform 0.1s ease;
+        }
+
+        .eyes-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* 6. Terminal Typing Effect */
+        .terminal-text {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            display: inline-block;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .terminal-text::before {
+            content: '$ ';
+            color: #00ff00;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: #00ff00;
+            margin-left: 2px;
+            animation: terminalBlink 0.7s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes terminalBlink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Disable heavy effects on mobile */
+        @media (max-width: 768px) {
+            .smoke-particle {
+                display: none;
+            }
+
+            /* Smaller coin on mobile */
+            .token-3d-container {
+                width: 80px !important;
+                height: 80px !important;
+                margin-bottom: 1rem;
+            }
+
+            .token-3d-face {
+                border-width: 4px !important;
+                font-size: 10px !important;
+            }
+
+            .coin-edge {
+                border-width: 2px !important;
+            }
+
+            .terminal-text {
+                font-size: 9px;
+                padding: 8px 12px;
+                word-break: break-all;
+                max-width: 90%;
+                margin: 0 auto;
+            }
+
+            /* Fix hero title - no overlap */
+            .glitch-text {
+                display: block !important;
+                line-height: 1.2 !important;
+            }
+
+            .csgo-animated-gradient {
+                display: block !important;
+                margin-top: 0.5rem !important;
+            }
+
+            h1.orbitron {
+                font-size: 1.8rem !important;
+                line-height: 1.3 !important;
+            }
+
+            /* Disable scramble on mobile for performance */
+            [data-scramble] .char.scrambling {
+                color: inherit !important;
+                text-shadow: none !important;
+            }
+
+            /* Stat cards on mobile */
+            .stat-counter,
+            .text-4xl {
+                font-size: 1.5rem !important;
+            }
+
+            .grid-cols-2 {
+                gap: 0.75rem !important;
+            }
+
+            .glass.rounded-2xl.p-6 {
+                padding: 1rem !important;
+            }
+
+            .eyes-container {
+                display: none;
+            }
+        }
+
+        /* Fade In Up Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
         }
 
         /* Accessibility Skip Link */
@@ -100,17 +621,75 @@
         }
 
         .hero-gradient {
-            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(244, 114, 182, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 50% 20%, rgba(251, 191, 36, 0.2) 0%, transparent 50%),
+            background: radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 0, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 30%, rgba(102, 126, 234, 0.2) 0%, transparent 40%),
                 var(--bg-color);
+            animation: aurora-shift 15s ease-in-out infinite alternate;
         }
 
-        /* Glass Morphism */
+        @keyframes aurora-shift {
+            0% {
+                background: radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 20%, rgba(255, 0, 255, 0.12) 0%, transparent 50%),
+                    radial-gradient(ellipse at 60% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 40% 30%, rgba(102, 126, 234, 0.2) 0%, transparent 40%),
+                    var(--bg-color);
+            }
+
+            50% {
+                background: radial-gradient(ellipse at 70% 60%, rgba(0, 240, 255, 0.18) 0%, transparent 55%),
+                    radial-gradient(ellipse at 30% 30%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),
+                    radial-gradient(ellipse at 20% 70%, rgba(255, 107, 0, 0.12) 0%, transparent 45%),
+                    radial-gradient(ellipse at 80% 50%, rgba(102, 126, 234, 0.18) 0%, transparent 45%),
+                    var(--bg-color);
+            }
+
+            100% {
+                background: radial-gradient(ellipse at 50% 40%, rgba(0, 240, 255, 0.12) 0%, transparent 45%),
+                    radial-gradient(ellipse at 60% 70%, rgba(255, 0, 255, 0.1) 0%, transparent 55%),
+                    radial-gradient(ellipse at 30% 20%, rgba(255, 107, 0, 0.15) 0%, transparent 50%),
+                    radial-gradient(ellipse at 70% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                    var(--bg-color);
+            }
+        }
+
+        /* Glass Morphism - Premium Upgrade */
         .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05),
+                0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-premium {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.1),
+                0 25px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .glass-premium:hover::before {
+            left: 100%;
         }
 
         /* Glow Effects */
@@ -124,6 +703,50 @@
 
         .glow-yellow {
             box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+        }
+
+        /* Premium Neon Glow Effects */
+        .neon-glow {
+            box-shadow: 0 0 10px var(--neon-cyan),
+                0 0 20px var(--neon-cyan),
+                0 0 40px rgba(0, 240, 255, 0.3);
+        }
+
+        .neon-glow-magenta {
+            box-shadow: 0 0 10px var(--neon-magenta),
+                0 0 20px var(--neon-magenta),
+                0 0 40px rgba(255, 0, 255, 0.3);
+        }
+
+        .neon-glow-orange {
+            box-shadow: 0 0 10px var(--neon-orange),
+                0 0 20px var(--neon-orange),
+                0 0 40px rgba(255, 107, 0, 0.3);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 40px currentColor;
+        }
+
+        /* Breathing Glow Animation */
+        @keyframes breathing-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.4),
+                    0 0 40px rgba(102, 126, 234, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(102, 126, 234, 0.6),
+                    0 0 60px rgba(102, 126, 234, 0.3);
+            }
+        }
+
+        .breathing-glow {
+            animation: breathing-glow 3s ease-in-out infinite;
         }
 
         /* Animations */
@@ -153,22 +776,77 @@
             transform: translateY(-15px) scale(1.02);
         }
 
+        /* 3D Tilt Card Effect */
+        .card-3d {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            will-change: transform;
+        }
+
+        .card-3d:hover {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .card-3d-inner {
+            transition: transform 0.1s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* Neon Border Animation */
+        .neon-border-animated {
+            position: relative;
+        }
+
+        .neon-border-animated::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta), var(--neon-orange), var(--neon-cyan));
+            background-size: 400% 400%;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: gradient-rotate 3s linear infinite;
+        }
+
+        .neon-border-animated:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes gradient-rotate {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         /* Button Styles */
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            transition: all var(--transition-speed) ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             border-radius: 50px;
             padding: 15px 30px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             font-weight: 700;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: none;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
             color: white;
             text-decoration: none;
@@ -181,8 +859,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
         }
 
         .btn-primary:hover::before {
@@ -190,8 +868,36 @@
         }
 
         .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5),
+                0 0 30px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Secondary Button - Ghost Style */
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3),
+                inset 0 0 20px rgba(102, 126, 234, 0.1);
         }
 
         /* Text Gradients */
@@ -1122,6 +1828,91 @@
             50% {
                 border-color: var(--primary-color);
             }
+        }
+
+        /* Floating Orb Animations */
+        @keyframes floatOrb0 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(50px, -30px) scale(1.1);
+            }
+
+            50% {
+                transform: translate(20px, 50px) scale(0.9);
+            }
+
+            75% {
+                transform: translate(-40px, 20px) scale(1.05);
+            }
+        }
+
+        @keyframes floatOrb1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(-60px, 40px) scale(0.95);
+            }
+
+            50% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            75% {
+                transform: translate(50px, 30px) scale(1);
+            }
+        }
+
+        @keyframes floatOrb2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(40px, 60px) scale(1.05);
+            }
+
+            50% {
+                transform: translate(-50px, -30px) scale(0.9);
+            }
+
+            75% {
+                transform: translate(-20px, 40px) scale(1.1);
+            }
+        }
+
+        @keyframes floatOrb3 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(-30px, -50px) scale(1.1);
+            }
+
+            50% {
+                transform: translate(60px, 20px) scale(0.95);
+            }
+
+            75% {
+                transform: translate(30px, -40px) scale(1);
+            }
+        }
+
+        .floating-orb {
+            will-change: transform;
         }
 
         /* Glitch Effect */
@@ -2281,17 +3072,26 @@
 </head>
 
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Premium Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Loading</div>
+    </div>
+
     <!-- Custom Cursor Elements -->
     <div class="custom-cursor" id="customCursor"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
     <div class="cursor-dot" id="cursorDot"></div>
 
     <!-- Loading Screen -->
-    <div class="loader-container" id="loader">
+    <div class="loader-container" id="loader" style="display: none;">
         <div class="csgo-loader">
             <div class="csgo-loader-content">AI</div>
         </div>
-        <div class="loading-text">Loading CSGOAI...</div>
+        <div class="loading-text">Loading CSAI...</div>
     </div>
 
     <!-- Skip to Content Link for Accessibility -->
@@ -2317,7 +3117,7 @@
 
     <!-- Notification -->
     <div class="notification" id="notification" role="alert">
-        <p>Welcome to CSGOAI - The Future of Gaming!</p>
+        <p>Welcome to CSAI - The Future of Gaming!</p>
     </div>
 
     <!-- Back to Top Button -->
@@ -2332,10 +3132,10 @@
                 <div class="flex items-center space-x-2">
                     <div class="main-logo weapon-icon">
                         <div class="main-logo-content">
-                            <img src="logos/csgo_coinlogo4.png" alt="CSGOAI Logo">
+                            <img src="logos/csgo_coinlogo4.png" alt="CSAI Logo">
                         </div>
                     </div>
-                    <span class="text-3xl font-bold csgo-animated-gradient orbitron">CSGOAI</span>
+                    <span class="text-3xl font-bold csgo-animated-gradient orbitron">CSAI</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#about" class="hover:text-purple-400 transition font-semibold">About</a>
@@ -2387,6 +3187,26 @@
         <div class="lottie-hero lottie-floating" id="lottieHero"></div>
 
         <div class="max-w-7xl mx-auto px-6 py-20 text-center relative z-10">
+
+            <!-- 3D Token Spinner -->
+            <div class="token-3d-container mb-8" data-aos="zoom-in">
+                <div class="token-3d">
+                    <!-- Edge layers for thickness -->
+                    <div class="coin-edge" style="transform: translateZ(4px);"></div>
+                    <div class="coin-edge" style="transform: translateZ(2px);"></div>
+                    <div class="coin-edge" style="transform: translateZ(0px);"></div>
+                    <div class="coin-edge" style="transform: translateZ(-2px);"></div>
+                    <div class="coin-edge" style="transform: translateZ(-4px);"></div>
+                    <!-- Front face with logo -->
+                    <div class="token-3d-face token-3d-front">
+                        <img src="logos/csgo_coinlogo3.png" alt="CSAI"
+                            style="width: 75%; height: 75%; object-fit: contain;">
+                    </div>
+                    <!-- Back face with text -->
+                    <div class="token-3d-face token-3d-back">CSAI</div>
+                </div>
+            </div>
+
             <div class="animate-float">
                 <div class="inline-block mb-4" data-aos="fade-down">
                     <span class="glass px-6 py-2 rounded-full text-sm font-bold neon-border pulse">
@@ -2394,14 +3214,21 @@
                     </span>
                 </div>
                 <h1 class="text-6xl md:text-7xl font-black mb-6 orbitron" data-aos="fade-up">
-                    <span class="glitch-text" data-text="AI-Powered Gaming">AI-Powered Gaming</span> <br>
-                    <span class="csgo-animated-gradient">REVOLUTION</span>
+                    <span class="glitch-text" data-text="AI-Powered Gaming" data-scramble>AI-Powered Gaming</span> <br>
+                    <span class="csgo-animated-gradient" data-scramble>REVOLUTION</span>
                 </h1>
             </div>
+
             <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
                 <span class="gradient-text-yellow font-bold">CS:GO</span> meets <span
                     class="gradient-text font-bold">Artificial Intelligence</span> on the blockchain
             </p>
+
+            <!-- Terminal Typing Effect -->
+            <div class="terminal-text mb-8" data-aos="fade-up" data-aos-delay="300"
+                data-terminal="Contract: E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz" data-speed="30">
+            </div>
+
             <p class="text-lg text-gray-400 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="400">
                 Real-time AI analytics • GameFi rewards • Secure trading • True ownership
             </p>
@@ -2410,9 +3237,9 @@
                     onclick="window.open('https://raydium.io/swap/?inputMint=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz&outputMint=sol', '_blank')">
                     <div class="lottie-logo" id="lottieLogoButton1">
                         <!-- Fallback logo image -->
-                        <img src="logos/csgo_coinlogo3.png" alt="CSGOAI Logo" class="logo-btn-fallback">
+                        <img src="logos/csgo_coinlogo3.png" alt="CSAI Logo" class="logo-btn-fallback">
                     </div>
-                    Buy CSGOAI Token
+                    Buy CSAI Token
                 </button>
                 <button class="glass px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition neon-border"
                     onclick="document.getElementById('whitepaper').scrollIntoView({behavior: 'smooth'})">
@@ -2453,7 +3280,7 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-5xl md:text-6xl font-black mb-4 orbitron" data-aos="fade-up">About <span
-                        class="text-5xl font-bold csgo-animated-gradient orbitron">CSGOAI</span></h2>
+                        class="text-5xl font-bold csgo-animated-gradient orbitron">CSAI</span></h2>
                 <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200">Shaping the Future of
                     AI-Powered Gaming</p>
             </div>
@@ -2524,7 +3351,7 @@
                             </div>
                             <h3 class="text-2xl font-black mb-4 orbitron">GameFi Rewards</h3>
                             <p class="text-gray-400 leading-relaxed">
-                                Daily quests, ranked milestones, and surprise airdrops. Earn CSGOAI tokens as you play.
+                                Daily quests, ranked milestones, and surprise airdrops. Earn CSAI tokens as you play.
                             </p>
                         </div>
                         <div class="flip-card-back">
@@ -2573,7 +3400,7 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-5xl md:text-6xl font-black mb-4 orbitron" data-aos="fade-up">Trade <span
-                        class="text-5xl font-bold csgo-animated-gradient orbitron">CSGOAI</span></h2>
+                        class="text-5xl font-bold csgo-animated-gradient orbitron">CSAI</span></h2>
                 <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200">Available on multiple exchanges
                 </p>
             </div>
@@ -2838,16 +3665,16 @@
                 <h2 class="text-5xl md:text-6xl font-black mb-4 orbitron" data-aos="fade-up">Frequently Asked <span
                         class="csgo-animated-gradient orbitron">Questions</span></h2>
                 <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200">Everything you need to know
-                    about CSGOAI</p>
+                    about CSAI</p>
             </div>
             <div class="space-y-4">
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <h3 class="text-xl font-bold">What is CSGOAI?</h3>
+                        <h3 class="text-xl font-bold">What is CSAI?</h3>
                         <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="text-gray-300">CSGOAI is a revolutionary gaming token that combines AI-powered
+                        <p class="text-gray-300">CSAI is a revolutionary gaming token that combines AI-powered
                             analytics with GameFi rewards on the Solana blockchain. It enhances the CS:GO gaming
                             experience by providing real-time strategic insights while allowing players to earn tokens
                             through gameplay.</p>
@@ -2867,22 +3694,22 @@
                 </div>
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <h3 class="text-xl font-bold">How can I earn CSGOAI tokens?</h3>
+                        <h3 class="text-xl font-bold">How can I earn CSAI tokens?</h3>
                         <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="text-gray-300">You can earn CSGOAI tokens through various activities: completing daily
+                        <p class="text-gray-300">You can earn CSAI tokens through various activities: completing daily
                             quests, achieving ranked milestones, participating in tournaments, staking your existing
                             tokens, and contributing to the community through content creation and feedback.</p>
                     </div>
                 </div>
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <h3 class="text-xl font-bold">Is CSGOAI secure?</h3>
+                        <h3 class="text-xl font-bold">Is CSAI secure?</h3>
                         <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="text-gray-300">Yes, CSGOAI is built on the Solana blockchain, known for its speed and
+                        <p class="text-gray-300">Yes, CSAI is built on the Solana blockchain, known for its speed and
                             security. Our smart contracts have been thoroughly audited by reputable third-party security
                             firms. We also implement multi-signature wallets and secure escrow systems for all
                             transactions.</p>
@@ -2890,11 +3717,11 @@
                 </div>
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <h3 class="text-xl font-bold">Where can I buy CSGOAI tokens?</h3>
+                        <h3 class="text-xl font-bold">Where can I buy CSAI tokens?</h3>
                         <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="text-gray-300">CSGOAI tokens are currently available on decentralized exchanges like
+                        <p class="text-gray-300">CSAI tokens are currently available on decentralized exchanges like
                             Raydium, Orca, and Jupiter. We're also working on listings on centralized exchanges
                             including MEXC, LBank, Gate.io, and Coinstore, which will be available in Q2-Q3 2025.</p>
                     </div>
@@ -2918,7 +3745,7 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <div class="text-6xl mb-6">📄</div>
-                        <h3 class="text-3xl font-black mb-6 orbitron">CSGOAI Whitepaper v1.0</h3>
+                        <h3 class="text-3xl font-black mb-6 orbitron">CSAI Whitepaper v1.0</h3>
                         <p class="text-gray-300 mb-6 leading-relaxed">
                             Discover the complete technical documentation, tokenomics breakdown, AI integration details,
                             and our long-term vision for revolutionizing gaming through blockchain and artificial
@@ -2940,7 +3767,7 @@
                                     class="fas fa-check text-green-400 mr-3 mt-1"></i><span>Roadmap &amp;
                                     milestones</span></li>
                         </ul>
-                        <a href="CSGOAI_Whitepaper.pdf" target="_blank"
+                        <a href="CSAI_Whitepaper.pdf" target="_blank"
                             class="btn-primary px-8 py-4 rounded-full font-bold text-lg inline-block">
                             <i class="fas fa-download mr-2"></i>View the Whitepaper
                         </a>
@@ -2991,10 +3818,10 @@
 
                     <div class="lottie-logo" id="lottieLogoButton2">
                         <!-- Fallback logo -->
-                        <img src="logos/csgo_coinlogo3.png" alt="CSGOAI Logo" class="logo-btn-fallback">
+                        <img src="logos/csgo_coinlogo3.png" alt="CSAI Logo" class="logo-btn-fallback">
                     </div>
 
-                    Buy CSGOAI Now
+                    Buy CSAI Now
                 </button>
 
 
@@ -3016,10 +3843,10 @@
                     <div class="flex items-center space-x-2 mb-4">
                         <div class="main-logo weapon-icon">
                             <div class="main-logo-content">
-                                <img src="logos/csgo_coinlogo4.png" alt="CSGOAI Logo">
+                                <img src="logos/csgo_coinlogo4.png" alt="CSAI Logo">
                             </div>
                         </div>
-                        <span class="text-3xl font-bold csgo-animated-gradient orbitron">CSGOAI</span>
+                        <span class="text-3xl font-bold csgo-animated-gradient orbitron">CSAI</span>
                     </div>
                     <p class="text-gray-400 text-sm mb-4">AI-powered gaming revolution on Solana blockchain</p>
                     <div class="flex space-x-3">
@@ -3085,7 +3912,7 @@
                 </div>
             </div>
             <div class="text-center text-gray-400 text-sm pt-8 border-t border-white/10">
-                <p class="mb-2">© 2025 CSGOAI. All rights reserved. Built on Solana blockchain.</p>
+                <p class="mb-2">© 2025 CSAI. All rights reserved. Built on Solana blockchain.</p>
                 <p class="text-xs">⚠️ Cryptocurrency investments carry risk. Always do your own research.</p>
             </div>
         </div>
@@ -3873,10 +4700,578 @@
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(initCustomCursor, 250);
         });
+
+        // Premium 3D Tilt Effect for Cards
+        function init3DTiltEffect() {
+            const cards = document.querySelectorAll('.card-3d, .glass, .market-card, .glass-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = (y - centerY) / 15;
+                    const rotateY = (centerX - x) / 15;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                    card.style.transition = 'transform 0.5s ease';
+                });
+
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'transform 0.1s ease';
+                });
+            });
+        }
+
+        // Initialize 3D Tilt on DOM load
+        document.addEventListener('DOMContentLoaded', init3DTiltEffect);
+
+        // Floating Neon Orbs Background Effect
+        function createFloatingOrbs() {
+            const container = document.querySelector('.hero-gradient');
+            if (!container) return;
+
+            const orbColors = [
+                'rgba(0, 240, 255, 0.3)',
+                'rgba(255, 0, 255, 0.25)',
+                'rgba(255, 107, 0, 0.2)',
+                'rgba(102, 126, 234, 0.3)'
+            ];
+
+            for (let i = 0; i < 4; i++) {
+                const orb = document.createElement('div');
+                orb.className = 'floating-orb';
+                orb.style.cssText = `
+                    position: absolute;
+                    width: ${150 + Math.random() * 200}px;
+                    height: ${150 + Math.random() * 200}px;
+                    border-radius: 50%;
+                    background: radial-gradient(circle, ${orbColors[i]} 0%, transparent 70%);
+                    filter: blur(40px);
+                    pointer-events: none;
+                    z-index: 0;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    animation: floatOrb${i} ${15 + Math.random() * 10}s ease-in-out infinite;
+                `;
+                container.appendChild(orb);
+            }
+        }
+
+        // Create floating orbs on load
+        document.addEventListener('DOMContentLoaded', createFloatingOrbs);
+
+        // ========================================
+        // WORLD-CLASS PREMIUM FEATURES
+        // ========================================
+
+        // Mobile Detection Helper for Premium Features
+        const isPremiumMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // 1. Page Loader
+        window.addEventListener('load', function () {
+            const pageLoader = document.getElementById('pageLoader');
+            if (pageLoader) {
+                // Faster on mobile
+                const delay = isPremiumMobile ? 400 : 800;
+                setTimeout(() => {
+                    pageLoader.classList.add('hidden');
+                    // Trigger staggered animations after load
+                    if (!isPremiumMobile) {
+                        triggerStaggeredAnimations();
+                    }
+                }, delay);
+            }
+        });
+
+        // 2. Scroll Progress Bar (works on mobile too - lightweight)
+        function updateScrollProgress() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            if (!scrollProgress) return;
+
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+
+            scrollProgress.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // 3. Magnetic Buttons - DESKTOP ONLY
+        function initMagneticButtons() {
+            // Skip on mobile - no mouse events
+            if (isPremiumMobile || prefersReducedMotion) return;
+
+            const magneticElements = document.querySelectorAll('.btn-primary, .cyber-button, .magnetic-btn');
+
+            magneticElements.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    const moveX = x * 0.3;
+                    const moveY = y * 0.3;
+
+                    btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0, 0)';
+                    btn.style.transition = 'transform 0.3s ease';
+                });
+
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.transition = 'transform 0.1s ease';
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initMagneticButtons);
+
+        // ========================================
+        // UNIQUE VISUAL EFFECTS
+        // ========================================
+
+        // 1. Smoke Trail Cursor - OPTIMIZED
+        function initSmokeTrail() {
+            if (isPremiumMobile || prefersReducedMotion) return;
+
+            let lastX = 0, lastY = 0;
+            let throttle = 0;
+            let particleCount = 0;
+            const maxParticles = 10; // Limit particles for performance
+
+            document.addEventListener('mousemove', (e) => {
+                throttle++;
+                if (throttle % 5 !== 0) return; // More throttle for performance
+
+                const dx = e.clientX - lastX;
+                const dy = e.clientY - lastY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance > 30 && particleCount < maxParticles) { // Higher threshold
+                    createSmokeParticle(e.clientX, e.clientY);
+                    lastX = e.clientX;
+                    lastY = e.clientY;
+                    particleCount++;
+                    setTimeout(() => particleCount--, 1000);
+                }
+            });
+        }
+
+        function createSmokeParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'smoke-particle';
+            const size = 15 + Math.random() * 15;
+            particle.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', initSmokeTrail);
+
+        // 2. Text Scramble Effect
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#@$%&';
+                this.update = this.update.bind(this);
+            }
+
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise(resolve => this.resolve = resolve);
+                this.queue = [];
+
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 10); // Faster start
+                    const end = start + Math.floor(Math.random() * 15); // Faster end
+                    this.queue.push({ from, to, start, end });
+                }
+
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+
+            update() {
+                let output = '';
+                let complete = 0;
+
+                for (let i = 0; i < this.queue.length; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="char scrambling">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+
+                this.el.innerHTML = output;
+
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame += 2; // 2x faster
+                }
+            }
+
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
+
+        function initTextScramble() {
+            const scrambleElements = document.querySelectorAll('[data-scramble]');
+
+            scrambleElements.forEach(el => {
+                const fx = new TextScramble(el);
+                const originalText = el.innerText;
+
+                // Scramble on scroll into view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            fx.setText(originalText);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                observer.observe(el);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initTextScramble);
+
+        // 3. 3D Token Drag Rotation
+        function init3DToken() {
+            const tokens = document.querySelectorAll('.token-3d');
+
+            tokens.forEach(token => {
+                let isDragging = false;
+                let startX, startY;
+                let currentRotateX = 10, currentRotateY = 0;
+
+                token.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    token.style.animation = 'none';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+
+                    const deltaX = e.clientX - startX;
+                    const deltaY = e.clientY - startY;
+
+                    currentRotateY += deltaX * 0.5;
+                    currentRotateX -= deltaY * 0.3;
+                    currentRotateX = Math.max(-30, Math.min(30, currentRotateX));
+
+                    token.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+
+                    startX = e.clientX;
+                    startY = e.clientY;
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        // Resume spinning from current position
+                        token.style.animation = '';
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', init3DToken);
+
+        // 5. Eyes Follow Cursor
+        function initEyesFollow() {
+            if (isPremiumMobile) return;
+
+            const eyes = document.querySelectorAll('.follow-eye');
+
+            document.addEventListener('mousemove', (e) => {
+                eyes.forEach(eye => {
+                    const pupil = eye.querySelector('.follow-eye-pupil');
+                    if (!pupil) return;
+
+                    const rect = eye.getBoundingClientRect();
+                    const eyeCenterX = rect.left + rect.width / 2;
+                    const eyeCenterY = rect.top + rect.height / 2;
+
+                    const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+                    const distance = Math.min(8, Math.hypot(e.clientX - eyeCenterX, e.clientY - eyeCenterY) / 10);
+
+                    const x = Math.cos(angle) * distance;
+                    const y = Math.sin(angle) * distance;
+
+                    pupil.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initEyesFollow);
+
+        // 6. Terminal Typing Effect
+        function initTerminalTyping() {
+            const terminals = document.querySelectorAll('[data-terminal]');
+
+            terminals.forEach(terminal => {
+                const text = terminal.dataset.terminal;
+                const speed = parseInt(terminal.dataset.speed) || 50;
+                terminal.innerHTML = '<span class="terminal-cursor"></span>';
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !terminal.dataset.typed) {
+                            terminal.dataset.typed = 'true';
+                            typeText(terminal, text, speed);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                observer.observe(terminal);
+            });
+        }
+
+        function typeText(element, text, speed) {
+            let index = 0;
+            const cursor = element.querySelector('.terminal-cursor');
+
+            function type() {
+                if (index < text.length) {
+                    const char = text.charAt(index);
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    element.insertBefore(span, cursor);
+                    index++;
+                    setTimeout(type, speed + Math.random() * 50);
+                }
+            }
+
+            type();
+        }
+
+        document.addEventListener('DOMContentLoaded', initTerminalTyping);
+
+        // 4. Animated Stat Counters
+        function animateCounter(element, target, duration = 2000) {
+            // Skip animation on mobile - keep original content
+            if (isPremiumMobile) {
+                return; // Don't change anything on mobile
+            }
+
+            let start = 0;
+            const increment = target / (duration / 16);
+            const suffix = element.dataset.suffix || '';
+            const prefix = element.dataset.prefix || '';
+
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = prefix + Math.floor(start).toLocaleString() + suffix;
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = prefix + target.toLocaleString() + suffix;
+                }
+            }
+
+            updateCounter();
+        }
+
+        function initCounterAnimation() {
+            const counters = document.querySelectorAll('.stat-counter, [data-counter]');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.dataset.animated) {
+                        entry.target.dataset.animated = 'true';
+                        const target = parseInt(entry.target.dataset.target) || parseInt(entry.target.textContent.replace(/\D/g, '')) || 0;
+                        animateCounter(entry.target, target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        document.addEventListener('DOMContentLoaded', initCounterAnimation);
+
+        // 5. Text Reveal on Scroll
+        function initTextReveal() {
+            const revealElements = document.querySelectorAll('.text-reveal, [data-reveal]');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            revealElements.forEach(el => observer.observe(el));
+        }
+
+        document.addEventListener('DOMContentLoaded', initTextReveal);
+
+        // 6. Staggered Animations on Load
+        function triggerStaggeredAnimations() {
+            const elements = document.querySelectorAll('[data-stagger]');
+
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('animate-fade-in-up');
+                }, index * 100);
+            });
+        }
+
+        // 7. Konami Code Easter Egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === konamiCode[konamiIndex]) {
+                konamiIndex++;
+
+                if (konamiIndex === konamiCode.length) {
+                    // Easter egg activated!
+                    activateEasterEgg();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        function activateEasterEgg() {
+            // Create celebration effect
+            const celebration = document.createElement('div');
+            celebration.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 999999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+
+            celebration.innerHTML = `
+                <div style="
+                    font-size: 48px;
+                    font-family: 'Orbitron', sans-serif;
+                    color: #ffd700;
+                    text-shadow: 0 0 30px #ffd700, 0 0 60px #ff6b00;
+                    animation: easterPop 2s ease forwards;
+                    text-align: center;
+                ">
+                    🎮 LEGENDARY! 🎮<br>
+                    <span style="font-size: 24px;">You found the secret!</span>
+                </div>
+            `;
+
+            document.body.appendChild(celebration);
+
+            // Add confetti effect
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: hsl(${Math.random() * 360}, 100%, 50%);
+                    left: ${Math.random() * 100}%;
+                    top: -20px;
+                    z-index: 999999;
+                    animation: confettiFall ${2 + Math.random() * 2}s ease forwards;
+                    transform: rotate(${Math.random() * 360}deg);
+                `;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 4000);
+            }
+
+            // Add keyframes dynamically
+            if (!document.getElementById('easterEggStyles')) {
+                const style = document.createElement('style');
+                style.id = 'easterEggStyles';
+                style.textContent = `
+                    @keyframes easterPop {
+                        0% { transform: scale(0); opacity: 0; }
+                        50% { transform: scale(1.2); opacity: 1; }
+                        100% { transform: scale(1); opacity: 0; }
+                    }
+                    @keyframes confettiFall {
+                        to {
+                            top: 100%;
+                            opacity: 0;
+                            transform: rotate(720deg) translateX(${Math.random() > 0.5 ? 100 : -100}px);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            setTimeout(() => celebration.remove(), 2500);
+
+            // Also change theme temporarily
+            document.body.style.transition = 'filter 0.5s';
+            document.body.style.filter = 'hue-rotate(180deg)';
+            setTimeout(() => {
+                document.body.style.filter = '';
+            }, 3000);
+        }
+
+        // 8. Smooth Parallax Effect on Scroll
+        function initParallax() {
+            const parallaxElements = document.querySelectorAll('[data-parallax]');
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+
+                parallaxElements.forEach(el => {
+                    const speed = parseFloat(el.dataset.parallax) || 0.5;
+                    el.style.transform = `translateY(${scrollY * speed}px)`;
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initParallax);
     </script>
     <script src="widget.js"></script>
     <style>
         @media (max-width: 768px) {
+
             /* Refined Mobile Hero Section Fixes - Alignment & Spacing */
             .hero-gradient h1 {
                 font-size: 2.2rem !important;
