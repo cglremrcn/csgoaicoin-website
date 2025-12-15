@@ -635,12 +635,12 @@
         @media (max-width: 768px) {
             .widget-container {
                 position: fixed !important;
-                top: 0 !important;
+                top: auto !important;
                 left: 0 !important;
                 width: 100% !important;
-                height: 100% !important;
-                right: auto !important;
-                bottom: auto !important;
+                height: auto !important;
+                right: 0 !important;
+                bottom: 0 !important;
                 z-index: 999999;
                 pointer-events: none; /* Let clicks pass through to site */
                 display: flex;
@@ -655,8 +655,8 @@
                 position: fixed;
                 bottom: 20px;
                 right: 20px;
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
                 pointer-events: auto; /* Re-enable clicks */
                 z-index: 1000000;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.6);
@@ -668,16 +668,19 @@
             }
 
             .chat-window {
-                position: absolute; /* Relative to fixed container */
-                bottom: 0;
-                left: 0;
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
                 width: 100% !important;
-                height: 85vh !important;
-                border-radius: 20px 20px 0 0 !important;
+                height: 60vh !important;
+                max-height: 450px !important;
+                min-height: 350px !important;
+                border-radius: 16px 16px 0 0 !important;
                 margin: 0 !important;
                 background: rgba(2, 4, 6, 0.98);
                 border: none;
-                border-top: 1px solid var(--glass-border);
+                border-top: 2px solid var(--glass-border);
                 transform-origin: bottom center;
                 pointer-events: auto; /* Re-enable clicks */
                 z-index: 1000001;
@@ -692,8 +695,22 @@
                 opacity: 1 !important;
             }
 
+            .chat-header {
+                padding: 8px 12px;
+            }
+
+            .header-title {
+                font-size: 11px;
+            }
+
+            .chat-messages {
+                padding: 8px;
+                gap: 8px;
+            }
+
             .chat-input-area {
-                padding-bottom: max(20px, env(safe-area-inset-bottom));
+                padding: 8px;
+                padding-bottom: max(12px, env(safe-area-inset-bottom));
             }
 
             /* Show Close Button on Mobile */
@@ -703,29 +720,50 @@
 
             /* Better Readability on Mobile */
             .message {
-                font-size: 15px;
-                padding: 14px 18px;
+                font-size: 13px;
+                padding: 10px 12px;
+                max-width: 85%;
             }
 
             .chat-input {
-                font-size: 16px;
-                padding: 14px;
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
+            .send-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .quick-chips {
+                padding: 4px 8px;
+                gap: 4px;
+            }
+
+            .chip {
+                font-size: 8px;
+                padding: 4px 6px;
             }
 
             /* Narrow Screen Optimizations (Galaxy S8+, iPhone SE, etc.) */
             @media (max-width: 380px) {
+                .chat-window {
+                    height: 55vh !important;
+                    max-height: 400px !important;
+                }
+
                 .chat-header {
-                    padding: 10px 12px !important;
+                    padding: 6px 10px !important;
                 }
 
                 .header-title {
-                    font-size: 13px !important;
+                    font-size: 10px !important;
                 }
 
                 .header-logo {
-                    width: 20px !important;
-                    height: 20px !important;
-                    margin-right: 5px !important;
+                    width: 16px !important;
+                    height: 16px !important;
+                    margin-right: 4px !important;
                 }
 
                 .rank-badge {
@@ -734,9 +772,9 @@
 
                 .theme-btn {
                     font-size: 0 !important; /* Hide text */
-                    padding: 6px !important;
-                    width: 32px !important;
-                    height: 32px !important;
+                    padding: 4px !important;
+                    width: 28px !important;
+                    height: 28px !important;
                     display: flex !important;
                     align-items: center !important;
                     justify-content: center !important;
@@ -744,26 +782,36 @@
 
                 .theme-btn::after {
                     content: '☯'; /* Icon for theme switch */
-                    font-size: 16px !important;
+                    font-size: 14px !important;
                 }
 
                 .quick-chips {
                     flex-wrap: nowrap !important;
                     overflow-x: auto !important;
                     justify-content: flex-start !important;
-                    padding-bottom: 5px !important;
+                    padding-bottom: 4px !important;
                     -webkit-overflow-scrolling: touch;
                 }
 
                 .chip {
                     flex: 0 0 auto !important; /* Don't shrink */
-                    font-size: 11px !important;
-                    padding: 6px 10px !important;
+                    font-size: 9px !important;
+                    padding: 5px 8px !important;
                 }
                 
                 /* Hide scrollbar for chips */
                 .quick-chips::-webkit-scrollbar {
                     display: none;
+                }
+
+                .message {
+                    font-size: 12px;
+                    padding: 8px 10px;
+                }
+
+                .chat-input {
+                    font-size: 13px;
+                    padding: 8px 10px;
                 }
             }
         }
@@ -780,7 +828,7 @@
                 <div class="header-title">
                     <span class="status-dot"></span>
                     <img src="logos/csgo_coinlogo3.png" class="header-logo" alt="CSAI">
-                    CSAI
+                    Agent Rush
                     <span class="rank-badge" id="userRank">Silver I</span>
                 </div>
                 <div class="header-actions">
@@ -816,7 +864,7 @@
                 </button>
             </div>
         </div>
-        <div class="notification-bubble">Psst! Need help? <img src="logos/csgo_coinlogo3.png" class="bubble-logo" alt="AI"></div>
+        <div class="notification-bubble">🎮 Yo! Agent Rush here! <img src="logos/csgo_coinlogo3.png" class="bubble-logo" alt="AI"></div>
         <button class="chat-button">
             <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"></path></svg>
         </button>
@@ -1201,7 +1249,7 @@
         if (lowerText === 'rush b' || lowerText === 'rush b!') {
             setTimeout(() => {
                 // FIX: Use double quotes for href so parseMarkdown ignores it
-                const rushMsg = '<strong>Don\'t Stop! Go Go Go! 🔫</strong><br><a href="https://raydium.io/swap/?inputMint=sol&outputMint=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz" target="_blank" style="color: #00ff00; font-weight: bold;">BUY NOW ON RAYDIUM</a>';
+                const rushMsg = '<strong>Don\'t Stop! Go Go Go! 🔫</strong><br><a href="https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol" target="_blank" style="color: #00ff00; font-weight: bold;">BUY NOW ON RAYDIUM</a>';
                 addMessageToUI(rushMsg, 'bot', false);
                 messageHistory.push({ role: 'assistant', content: rushMsg });
                 saveHistory();
@@ -1218,7 +1266,7 @@
                     <strong>Live Market Data 📊</strong><br>
                     <div class="chart-container" style="height: auto; padding: 15px; text-align: center; background: rgba(0,0,0,0.5);">
                         <p style="margin-bottom: 10px; font-size: 0.9em; color: #ccc;">View real-time price action on DexScreener:</p>
-                        <a href="https://dexscreener.com/solana/E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz" target="_blank" class="theme-btn" style="display: inline-block; width: auto; padding: 8px 20px; text-decoration: none;">
+                        <a href="https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p" target="_blank" class="theme-btn" style="display: inline-block; width: auto; padding: 8px 20px; text-decoration: none;">
                             📈 Open Live Chart
                         </a>
                     </div>

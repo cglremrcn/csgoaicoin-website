@@ -10,12 +10,26 @@
         content="CSAI is a Solana-based token delivering AI-driven in-game analytics, rewards & airdrops, and a secure trading layer for competitive play.">
 
     <!-- SEO Meta Tags -->
+    <meta name="keywords"
+        content="CSAI, CS:GO, gaming, crypto, Solana, GameFi, AI analytics, blockchain gaming, token, cryptocurrency">
+    <meta name="author" content="CSAI Team">
+    <meta name="robots" content="index, follow">
 
     <link rel="icon" type="image/png" href="logos/csgo_coinlogo4.png">
+    <link rel="apple-touch-icon" href="logos/csgo_coinlogo4.png">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:title" content="CSAI - AI-Powered Gaming Revolution">
+    <meta property="og:description"
+        content="CSAI is a Solana-based token delivering AI-driven in-game analytics, rewards & airdrops, and a secure trading layer for competitive play.">
     <meta property="og:image" content="https://csaicoin.com/logos/csgo_coinlogo4.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://csaicoin.com/">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CSAI">
+    <meta property="og:locale" content="en_US">
+
     <link rel="canonical" href="https://csaicoin.com/">
 
     <!-- Structured Data -->
@@ -30,6 +44,11 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@csai04">
+    <meta name="twitter:creator" content="@csai04">
+    <meta name="twitter:title" content="CSAI - AI-Powered Gaming Revolution">
+    <meta name="twitter:description"
+        content="CSAI is a Solana-based token delivering AI-driven in-game analytics, rewards & airdrops, and a secure trading layer for competitive play.">
     <meta name="twitter:image" content="https://csaicoin.com/logos/csgo_coinlogo4.png">
 
     <!-- External Resources -->
@@ -621,38 +640,7 @@
         }
 
         .hero-gradient {
-            background: radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(255, 0, 255, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 40% 30%, rgba(102, 126, 234, 0.2) 0%, transparent 40%),
-                var(--bg-color);
-            animation: aurora-shift 15s ease-in-out infinite alternate;
-        }
-
-        @keyframes aurora-shift {
-            0% {
-                background: radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
-                    radial-gradient(ellipse at 80% 20%, rgba(255, 0, 255, 0.12) 0%, transparent 50%),
-                    radial-gradient(ellipse at 60% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
-                    radial-gradient(ellipse at 40% 30%, rgba(102, 126, 234, 0.2) 0%, transparent 40%),
-                    var(--bg-color);
-            }
-
-            50% {
-                background: radial-gradient(ellipse at 70% 60%, rgba(0, 240, 255, 0.18) 0%, transparent 55%),
-                    radial-gradient(ellipse at 30% 30%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),
-                    radial-gradient(ellipse at 20% 70%, rgba(255, 107, 0, 0.12) 0%, transparent 45%),
-                    radial-gradient(ellipse at 80% 50%, rgba(102, 126, 234, 0.18) 0%, transparent 45%),
-                    var(--bg-color);
-            }
-
-            100% {
-                background: radial-gradient(ellipse at 50% 40%, rgba(0, 240, 255, 0.12) 0%, transparent 45%),
-                    radial-gradient(ellipse at 60% 70%, rgba(255, 0, 255, 0.1) 0%, transparent 55%),
-                    radial-gradient(ellipse at 30% 20%, rgba(255, 107, 0, 0.15) 0%, transparent 50%),
-                    radial-gradient(ellipse at 70% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-                    var(--bg-color);
-            }
+            background: linear-gradient(180deg, var(--bg-color) 0%, rgba(15, 15, 25, 1) 50%, var(--bg-color) 100%);
         }
 
         /* Glass Morphism - Premium Upgrade */
@@ -2199,6 +2187,29 @@
             justify-content: center;
         }
 
+        /* Wallet Section - Disable all transform effects */
+        #wallets * {
+            transform: none !important;
+            will-change: auto !important;
+        }
+
+        #wallets *:hover,
+        #wallets *:active,
+        #wallets *:focus {
+            transform: none !important;
+            scale: 1 !important;
+        }
+
+        #wallets .glass {
+            perspective: none !important;
+        }
+
+        #wallets button,
+        #wallets .group,
+        #wallets div {
+            transition: background-color 0.3s ease, opacity 0.3s ease, border-color 0.3s ease !important;
+        }
+
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
@@ -3041,6 +3052,680 @@
         }
     </style>
     <style>
+        /* ========================================
+           NEW PREMIUM FEATURES STYLES
+           ======================================== */
+
+        /* Live Price Ticker */
+        .price-ticker {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .price-ticker .price {
+            color: var(--neon-gold);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .price-ticker .change {
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .price-ticker .change.positive {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .price-ticker .change.negative {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Burn Counter Section */
+        .burn-counter-section {
+            background: linear-gradient(180deg, rgba(255, 100, 0, 0.05) 0%, transparent 100%);
+        }
+
+        .burn-counter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .burn-number {
+            font-size: 4rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff6b00, #ffd700, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 107, 0, 0.3);
+            animation: burnGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes burnGlow {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.2);
+            }
+        }
+
+        .burn-progress {
+            width: 100%;
+            max-width: 400px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .burn-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b00, #ffd700);
+            border-radius: 6px;
+            transition: width 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .burn-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            100% {
+                left: 100%;
+            }
+        }
+
+        .fire-emoji {
+            animation: fireFlicker 0.5s infinite alternate;
+        }
+
+        @keyframes fireFlicker {
+            0% {
+                transform: scale(1) rotate(-5deg);
+            }
+
+            100% {
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+
+        /* Staking Calculator */
+        .staking-calculator {
+            background: var(--glass-premium);
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stake-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .stake-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--neon-magenta));
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--primary-color);
+            transition: transform 0.2s;
+        }
+
+        .stake-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .stake-result {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stake-result .earnings {
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            color: #10b981;
+        }
+
+        /* Partnership Logos */
+        .partners-section {
+            overflow: hidden;
+            padding: 40px 0;
+        }
+
+        .partners-track {
+            display: flex;
+            gap: 60px;
+            animation: scrollPartners 30s linear infinite;
+        }
+
+        .partners-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollPartners {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .partner-logo {
+            flex-shrink: 0;
+            width: 120px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 12px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .partner-logo:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(2);
+            transition: filter 0.3s ease;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .partner-logo span {
+            font-size: 14px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .partner-logo:hover span {
+            color: white;
+        }
+
+        /* Partner Logo States */
+        .partner-logo.active img {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .partner-logo.active {
+            border-color: rgba(16, 185, 129, 0.5);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .partner-logo.coming-soon {
+            opacity: 0.5;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .partner-logo.coming-soon img {
+            filter: grayscale(100%) brightness(0.8);
+        }
+
+        .partner-logo.coming-soon span {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .partner-logo.coming-soon::after {
+            content: 'Soon';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 8px;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .partner-logo {
+            position: relative;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .burn-number {
+                font-size: 2rem;
+            }
+
+            .stake-result .earnings {
+                font-size: 1.5rem;
+            }
+
+            .price-ticker {
+                display: none;
+            }
+
+            .partner-logo {
+                width: 80px;
+                height: 40px;
+                padding: 8px 12px;
+            }
+
+            .partners-track {
+                gap: 30px;
+            }
+        }
+    </style>
+    <style>
+        /* ========================================
+           AI COMPANION & AR VIEWER STYLES
+           ======================================== */
+
+        /* AI Companion Demo Section */
+        .ai-companion-section {
+            background: linear-gradient(180deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+        }
+
+        .ai-chat-demo {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-message {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            animation: messageSlide 0.5s ease;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .ai-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--primary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .ai-bubble {
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 16px 16px 16px 4px;
+            padding: 12px 16px;
+            max-width: 280px;
+        }
+
+        .ai-bubble.strategy {
+            background: rgba(255, 107, 0, 0.2);
+            border-color: rgba(255, 107, 0, 0.3);
+        }
+
+        .ai-typing {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+        }
+
+        .ai-typing span {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            animation: typingDot 1.4s infinite;
+        }
+
+        .ai-typing span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .ai-typing span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingDot {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
+        }
+
+        /* Game HUD Mockup */
+        .game-hud-mockup {
+            position: relative;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .hud-minimap {
+            width: 150px;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hud-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: dotPulse 2s infinite;
+        }
+
+        .hud-dot.player {
+            background: #10b981;
+            top: 50%;
+            left: 50%;
+        }
+
+        .hud-dot.enemy {
+            background: #ef4444;
+            animation: enemyMove 3s infinite;
+        }
+
+        .hud-dot.teammate {
+            background: #3b82f6;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        @keyframes enemyMove {
+            0% {
+                top: 20%;
+                left: 80%;
+            }
+
+            50% {
+                top: 40%;
+                left: 60%;
+            }
+
+            100% {
+                top: 20%;
+                left: 80%;
+            }
+        }
+
+        .ai-suggestion-bubble {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(255, 165, 0, 0.9));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+            animation: suggestionPop 0.5s ease;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        @keyframes suggestionPop {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* AR Token Viewer Section */
+        .ar-viewer-section {
+            background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+        }
+
+        .ar-phone-frame {
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(145deg, #1a1a2e, #0a0a0f);
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
+                inset 0 2px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .ar-phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0f 100%);
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ar-phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 30px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .ar-token-3d {
+            width: 180px;
+            height: 180px;
+            position: relative;
+            animation: arFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes arFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateY(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotateY(180deg);
+            }
+        }
+
+        .ar-hologram-ring {
+            position: absolute;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            animation: hologramRing 3s linear infinite;
+            opacity: 0.5;
+        }
+
+        .ar-hologram-ring:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: -10px;
+            left: -10px;
+        }
+
+        .ar-hologram-ring:nth-child(2) {
+            width: 240px;
+            height: 240px;
+            top: -30px;
+            left: -30px;
+            animation-delay: 1s;
+        }
+
+        .ar-hologram-ring:nth-child(3) {
+            width: 280px;
+            height: 280px;
+            top: -50px;
+            left: -50px;
+            animation-delay: 2s;
+        }
+
+        @keyframes hologramRing {
+            0% {
+                transform: rotateX(60deg) rotateZ(0deg);
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: rotateX(60deg) rotateZ(360deg);
+                opacity: 0.5;
+            }
+        }
+
+        .ar-scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            animation: arScan 2s linear infinite;
+        }
+
+        @keyframes arScan {
+            0% {
+                top: 0;
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        .ar-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(102, 126, 234, 0.2));
+            border: 1px solid var(--neon-cyan);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--neon-cyan);
+            font-weight: bold;
+        }
+
+        /* Mobile adjustments for new sections */
+        @media (max-width: 768px) {
+            .ai-chat-demo {
+                max-width: 100%;
+            }
+
+            .ar-phone-frame {
+                width: 220px;
+                height: 440px;
+            }
+
+            .ar-token-3d {
+                width: 120px;
+                height: 120px;
+            }
+
+            .hud-minimap {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+    <style>
         @media (max-width: 768px) {
 
             /* Mobile Hero Section Fixes - UPDATED */
@@ -3142,12 +3827,13 @@
                     <a href="#features" class="hover:text-purple-400 transition font-semibold">Features</a>
                     <a href="#markets" class="hover:text-purple-400 transition font-semibold">Markets</a>
                     <a href="#tokenomics" class="hover:text-purple-400 transition font-semibold">Tokenomics</a>
+                    <a href="#wallets" class="hover:text-purple-400 transition font-semibold">Wallets</a>
                     <a href="#roadmap" class="hover:text-purple-400 transition font-semibold">Roadmap</a>
                     <a href="#faq" class="hover:text-purple-400 transition font-semibold">FAQ</a>
                     <a href="#whitepaper" class="hover:text-purple-400 transition font-semibold">Whitepaper</a>
                 </div>
                 <button class="cyber-button  px-6 py-3 rounded-full font-bold"
-                    onclick="window.open('https://raydium.io/swap/?inputMint=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz&outputMint=sol', '_blank')">
+                    onclick="window.open('https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol', '_blank')">
                     <span class="csgo-animated-gradient">Buy Now</span>
                 </button>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
@@ -3166,12 +3852,13 @@
         <a href="#features" onclick="closeMobileMenu()">Features</a>
         <a href="#markets" onclick="closeMobileMenu()">Markets</a>
         <a href="#tokenomics" onclick="closeMobileMenu()">Tokenomics</a>
+        <a href="#wallets" onclick="closeMobileMenu()">Wallets</a>
         <a href="#roadmap" onclick="closeMobileMenu()">Roadmap</a>
         <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
         <a href="#whitepaper" onclick="closeMobileMenu()">Whitepaper</a>
         <div class="px-6 py-4">
             <button class="cyber-button gradient-bg px-3 py-3 rounded-full font-bold w-full"
-                onclick="window.open('https://raydium.io/swap/?inputMint=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz&outputMint=sol', '_blank')">
+                onclick="window.open('https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol', '_blank')">
                 Buy Now
             </button>
         </div>
@@ -3220,13 +3907,13 @@
             </div>
 
             <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                <span class="gradient-text-yellow font-bold">CS:GO</span> meets <span
+                <span class="gradient-text-yellow font-bold">Counter Strike</span> meets <span
                     class="gradient-text font-bold">Artificial Intelligence</span> on the blockchain
             </p>
 
             <!-- Terminal Typing Effect -->
             <div class="terminal-text mb-8" data-aos="fade-up" data-aos-delay="300"
-                data-terminal="Contract: E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz" data-speed="30">
+                data-terminal="Contract: CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB" data-speed="30">
             </div>
 
             <p class="text-lg text-gray-400 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="400">
@@ -3234,7 +3921,7 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="600">
                 <button class="glass px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition neon-border"
-                    onclick="window.open('https://raydium.io/swap/?inputMint=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz&outputMint=sol', '_blank')">
+                    onclick="window.open('https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol', '_blank')">
                     <div class="lottie-logo" id="lottieLogoButton1">
                         <!-- Fallback logo image -->
                         <img src="logos/csgo_coinlogo3.png" alt="CSAI Logo" class="logo-btn-fallback">
@@ -3411,10 +4098,10 @@
                     data-aos="fade-up">
                     <i class="fas fa-exchange-alt mr-3"></i>Decentralized Exchanges (DEX)
                 </h3>
-                <div class="grid md:grid-cols-3 gap-2 w-fit mx-auto">
+                <div class="grid md:grid-cols-3 gap-6 w-fit mx-auto">
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
                         data-aos-delay="100"
-                        onclick="window.open('https://raydium.io/swap/?inputMint=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz&outputMint=sol', '_blank')">
+                        onclick="window.open('https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol', '_blank')">
                         <img src="logos/raydium.png" alt="Raydium" class="w-20 h-20 mx-auto mb-4 object-contain">
                         <h4 class="text-xl font-bold mb-2">Raydium</h4>
                         <p class="text-gray-400 text-sm mb-4">Solana's leading DEX</p>
@@ -3423,21 +4110,21 @@
                         </button>
                     </div>
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
-                        data-aos-delay="200"
-                        onclick="window.open('https://www.orca.so/create-pool/splash?tokenBase=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz&tokenQuote=So11111111111111111111111111111111111111112', '_blank')">
-                        <img src="logos/orco.png" alt="Orca" class="w-20 h-20 mx-auto mb-4 object-contain">
-                        <h4 class="text-xl font-bold mb-2">Orca</h4>
-                        <p class="text-gray-400 text-sm mb-4">User-friendly Solana DEX</p>
+                        data-aos-delay="150"
+                        onclick="window.open('https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p', '_blank')">
+                        <img src="logos/dexscreener.png" alt="DexScreener" class="w-20 h-20 mx-auto mb-4 object-contain">
+                        <h4 class="text-xl font-bold mb-2">DexScreener</h4>
+                        <p class="text-gray-400 text-sm mb-4">Real-time DEX analytics</p>
                         <button class="btn-primary px-6 py-3 rounded-full text-sm font-semibold w-full">
-                            <i class="fas fa-arrow-right mr-2"></i>Trade Now
+                            <i class="fas fa-arrow-right mr-2"></i>View Chart
                         </button>
                     </div>
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
-                        data-aos-delay="300"
-                        onclick="window.open('https://jup.ag/swap?sell=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz&buy=So11111111111111111111111111111111111111112', '_blank')">
-                        <img src="logos/jupiter.png" alt="Jupiter" class="w-20 h-20 mx-auto mb-4 object-contain">
-                        <h4 class="text-xl font-bold mb-2">Jupiter</h4>
-                        <p class="text-gray-400 text-sm mb-4">Best price aggregator</p>
+                        data-aos-delay="200"
+                        onclick="window.open('https://app.uniswap.org/explore/tokens/ethereum/0x2bab03dcec62324496e000cce2cf4c916d93b289?inputCurrency=NATIVE', '_blank')">
+                        <img src="logos/uniswap.png" alt="Uniswap" class="w-20 h-20 mx-auto mb-4 object-contain">
+                        <h4 class="text-xl font-bold mb-2">Uniswap</h4>
+                        <p class="text-gray-400 text-sm mb-4">Leading Ethereum DEX</p>
                         <button class="btn-primary px-6 py-3 rounded-full text-sm font-semibold w-full">
                             <i class="fas fa-arrow-right mr-2"></i>Trade Now
                         </button>
@@ -3453,12 +4140,12 @@
                 </h3>
                 <div class="grid md:grid-cols-4 gap-10 w-fit mx-auto">
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
-                        data-aos-delay="100" onclick="window.open('https://www.mexc.com/', '_blank')">
-                        <img src="logos/mexc.png" alt="MEXC" class="w-16 h-16 mx-auto mb-4 object-contain">
-                        <h4 class="text-lg font-bold mb-2">MEXC</h4>
+                        data-aos-delay="100" onclick="window.open('https://www.coinstore.com/', '_blank')">
+                        <img src="logos/coinstore.png" alt="Coinstore" class="w-16 h-16 mx-auto mb-4 object-contain">
+                        <h4 class="text-lg font-bold mb-2">Coinstore</h4>
                         <p class="text-gray-400 text-xs mb-3">Coming Soon</p>
                         <div class="text-sm text-yellow-400 font-semibold">
-                            <i class="fas fa-clock mr-1"></i>Q1 2026
+                            <i class="fas fa-clock mr-1"></i>Q4 2025
                         </div>
                     </div>
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
@@ -3471,18 +4158,18 @@
                         </div>
                     </div>
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
-                        data-aos-delay="300" onclick="window.open('https://www.gate.io/', '_blank')">
-                        <img src="logos/gate_io.jpeg" alt="Gate.io" class="w-16 h-16 mx-auto mb-4 object-contain">
-                        <h4 class="text-lg font-bold mb-2">Gate.io</h4>
+                        data-aos-delay="300" onclick="window.open('https://www.mexc.com/', '_blank')">
+                        <img src="logos/mexc.png" alt="MEXC" class="w-16 h-16 mx-auto mb-4 object-contain">
+                        <h4 class="text-lg font-bold mb-2">MEXC</h4>
                         <p class="text-gray-400 text-xs mb-3">Coming Soon</p>
                         <div class="text-sm text-yellow-400 font-semibold">
-                            <i class="fas fa-clock mr-1"></i>Q2 2026
+                            <i class="fas fa-clock mr-1"></i>Q1 2026
                         </div>
                     </div>
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
-                        data-aos-delay="400" onclick="window.open('https://www.coinstore.com/', '_blank')">
-                        <img src="logos/coinstore.png" alt="Coinstore" class="w-16 h-16 mx-auto mb-4 object-contain">
-                        <h4 class="text-lg font-bold mb-2">Coinstore</h4>
+                        data-aos-delay="400" onclick="window.open('https://www.gate.io/', '_blank')">
+                        <img src="logos/gate_io.jpeg" alt="Gate.io" class="w-16 h-16 mx-auto mb-4 object-contain">
+                        <h4 class="text-lg font-bold mb-2">Gate.io</h4>
                         <p class="text-gray-400 text-xs mb-3">Coming Soon</p>
                         <div class="text-sm text-yellow-400 font-semibold">
                             <i class="fas fa-clock mr-1"></i>Q2 2026
@@ -3523,13 +4210,13 @@
                                 class="flex justify-between items-center p-5 bg-white/5 rounded-xl hover:bg-white/10 transition">
                                 <span class="font-bold text-lg"><i class="fas fa-coins mr-2 text-yellow-400"></i>Total
                                     Supply</span>
-                                <span class="text-1xl font-bold csgo-animated-gradient orbitron">1.5B</span>
+                                <span class="text-1xl font-bold csgo-animated-gradient orbitron">3.0 B</span>
                             </div>
                             <div
                                 class="flex justify-between items-center p-5 bg-white/5 rounded-xl hover:bg-white/10 transition">
                                 <span class="font-bold text-lg"><i class="fas fa-water mr-2 text-blue-400"></i>Public
                                     Circulation</span>
-                                <span class="text-1xl font-bold csgo-animated-gradient orbitron">90%</span>
+                                <span class="text-1xl font-bold csgo-animated-gradient orbitron">89%</span>
                             </div>
                         </div>
                         <div class="space-y-6">
@@ -3537,16 +4224,173 @@
                                 class="flex justify-between items-center p-5 bg-white/5 rounded-xl hover:bg-white/10 transition">
                                 <span class="font-bold text-lg"><i
                                         class="fas fa-gift mr-2 text-pink-400"></i>Airdrop</span>
-                                <span class="text-1xl font-bold csgo-animated-gradient orbitron">6.67%</span>
+                                <span class="text-1xl font-bold csgo-animated-gradient orbitron">5%</span>
                             </div>
                             <div
                                 class="flex justify-between items-center p-5 bg-white/5 rounded-xl hover:bg-white/10 transition">
                                 <span class="font-bold text-lg"><i
                                         class="fas fa-fire mr-2 text-orange-400"></i>Burn</span>
-                                <span class="text-1xl font-bold csgo-animated-gradient orbitron">3.33%</span>
+                                <span class="text-1xl font-bold csgo-animated-gradient orbitron">6%</span>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Official Reserve Wallets Section -->
+    <section id="wallets" class="section-container py-20 bg-black/50">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-black mb-4 orbitron" data-aos="fade-up">
+                    <span class="csgo-animated-gradient orbitron">Official Reserve Wallets</span>
+                </h2>
+                <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200">
+                    Transparent and secure token management
+                </p>
+            </div>
+
+            <div class="glass rounded-3xl p-12 max-w-6xl mx-auto neon-border relative overflow-hidden" data-aos="fade-up">
+                <div class="ai-scanner"></div>
+                <div class="space-y-6 relative z-10">
+                    
+                    <!-- CEX Wallets -->
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-4 gradient-text orbitron">
+                            <i class="fas fa-exchange-alt mr-3"></i>CEX Reserve Wallets
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-6">
+                            The total CEX liquidity allocation is distributed across multiple independent reserve wallets (A–E)
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- CEX 1 -->
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center font-bold">
+                                        1
+                                    </div>
+                                    <span class="font-semibold text-gray-300">CEX liquidity A</span>
+                                </div>
+                                <button onclick="copyToClipboard('HhMy1dMV9FCYEhFMtZtE2tBdhPnb2vv3bUg6Nzgrsu1G', this)" 
+                                        class="flex items-center space-x-2 px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 rounded-lg transition">
+                                    <span class="text-xs font-mono text-gray-400 hidden sm:inline">HhMy1d...su1G</span>
+                                    <i class="fas fa-copy text-purple-400"></i>
+                                </button>
+                            </div>
+
+                            <!-- CEX 2 -->
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center font-bold">
+                                        2
+                                    </div>
+                                    <span class="font-semibold text-gray-300">CEX liquidity B</span>
+                                </div>
+                                <button onclick="copyToClipboard('2hfKzqJ1m78FkANToWbuou7d7mKY8EC94mZJhBVFEnvK', this)" 
+                                        class="flex items-center space-x-2 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg transition">
+                                    <span class="text-xs font-mono text-gray-400 hidden sm:inline">2hfKzq...EnvK</span>
+                                    <i class="fas fa-copy text-blue-400"></i>
+                                </button>
+                            </div>
+
+                            <!-- CEX 3 -->
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-full flex items-center justify-center font-bold">
+                                        3
+                                    </div>
+                                    <span class="font-semibold text-gray-300">CEX liquidity C</span>
+                                </div>
+                                <button onclick="copyToClipboard('HgJ5PVB6JugSo53btLKWBT2C5YGoUcGgXe5T8etvgvVr', this)" 
+                                        class="flex items-center space-x-2 px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-lg transition">
+                                    <span class="text-xs font-mono text-gray-400 hidden sm:inline">HgJ5PV...gvVr</span>
+                                    <i class="fas fa-copy text-cyan-400"></i>
+                                </button>
+                            </div>
+
+                            <!-- CEX 4 -->
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-teal-500 to-green-500 rounded-full flex items-center justify-center font-bold">
+                                        4
+                                    </div>
+                                    <span class="font-semibold text-gray-300">CEX liquidity D</span>
+                                </div>
+                                <button onclick="copyToClipboard('4ziST2FKvEhzMfMjdRxMVCD1ecCL2VYWiwrYJ3wVSHxg', this)" 
+                                        class="flex items-center space-x-2 px-4 py-2 bg-teal-500/20 hover:bg-teal-500/30 rounded-lg transition">
+                                    <span class="text-xs font-mono text-gray-400 hidden sm:inline">4ziST2...SHxg</span>
+                                    <i class="fas fa-copy text-teal-400"></i>
+                                </button>
+                            </div>
+
+                            <!-- CEX 5 -->
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group md:col-span-2">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center font-bold">
+                                        5
+                                    </div>
+                                    <span class="font-semibold text-gray-300">CEX liquidity E</span>
+                                </div>
+                                <button onclick="copyToClipboard('8pNbSicGAuJMjVZGqh8TLRMd7yjG6MsrwyVgxSvivLyC', this)" 
+                                        class="flex items-center space-x-2 px-4 py-2 bg-green-500/20 hover:bg-green-500/30 rounded-lg transition">
+                                    <span class="text-xs font-mono text-gray-400 hidden sm:inline">8pNbSi...vLyC</span>
+                                    <i class="fas fa-copy text-green-400"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Wallets -->
+                    <div class="grid md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
+                        <!-- Airdrop Wallet -->
+                        <div class="p-6 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-gift text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold gradient-text">Airdrop Wallet</h4>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-black/30 rounded-lg">
+                                <span class="text-xs font-mono text-gray-400 break-all">C1FP74...1b5DX</span>
+                                <button onclick="copyToClipboard('C1FP74GhWCGk92EusqtDusZRXaKQHZos2Wy1TzG1b5DX', this)" 
+                                        class="ml-3 px-3 py-2 bg-pink-500/20 hover:bg-pink-500/30 rounded-lg transition">
+                                    <i class="fas fa-copy text-pink-400"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Burn Wallet -->
+                        <div class="p-6 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl border border-orange-500/20 hover:border-orange-500/40 transition">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-fire text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold gradient-text">Burn Wallet</h4>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-black/30 rounded-lg">
+                                <span class="text-xs font-mono text-gray-400 break-all">DyVBDZ...W6gGe</span>
+                                <button onclick="copyToClipboard('DyVBDZVyGFdJngoQZfmdb34MkPayeoVeU91phDbW6gGe', this)" 
+                                        class="ml-3 px-3 py-2 bg-orange-500/20 hover:bg-orange-500/30 rounded-lg transition">
+                                    <i class="fas fa-copy text-orange-400"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Box -->
+                    <div class="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-info-circle text-blue-400 text-xl mt-1"></i>
+                            <div>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    All wallet addresses are publicly verifiable on the Solana blockchain. 
+                                    Click the copy icon to copy the full wallet address.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -3583,6 +4427,9 @@
                             <li class="flex items-start"><i
                                     class="fas fa-check-circle text-green-400 mr-3 mt-1"></i><span>Initial DEX listings
                                     (Raydium, Orca)</span></li>
+                            <li class="flex items-start"><i
+                                    class="fas fa-circle text-yellow-400 mr-3 mt-1 text-xs"></i><span>Coinstore CEX
+                                    listing</span></li>
                         </ul>
                     </div>
                 </div>
@@ -3615,6 +4462,9 @@
                         </div>
                         <h3 class="text-3xl font-black mb-6 orbitron">DAO &amp; NFT Launch</h3>
                         <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start"><i
+                                    class="fas fa-circle text-gray-500 mr-3 mt-1 text-xs"></i><span>Gate.io CEX
+                                    listing</span></li>
                             <li class="flex items-start"><i
                                     class="fas fa-circle text-gray-500 mr-3 mt-1 text-xs"></i><span>DAO governance
                                     system</span></li>
@@ -3795,6 +4645,73 @@
         </div>
     </section>
 
+    <!-- Partnership Logos Section -->
+    <section class="partners-section border-y border-white/10">
+        <div class="text-center mb-8">
+            <p class="text-gray-400 text-lg font-semibold uppercase tracking-wider">Trusted By & Listed On</p>
+        </div>
+        <div class="partners-track" id="partnersTrack">
+            <!-- First set -->
+            <a href="https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol" target="_blank" class="partner-logo active" title="Raydium - Listed">
+                <img src="logos/raydium.png" alt="Raydium">
+            </a>
+            <a href="https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p" target="_blank" class="partner-logo active" title="DexScreener - Listed">
+                <img src="logos/dexscreener.png" alt="DexScreener">
+            </a>
+            <a href="#" class="partner-logo coming-soon" title="MEXC - Coming Soon">
+                <img src="logos/mexc.png" alt="MEXC">
+            </a>
+            <a href="#" class="partner-logo coming-soon" title="LBank - Coming Soon">
+                <img src="logos/lbank.png" alt="LBank">
+            </a>
+            <a href="#" class="partner-logo coming-soon" title="Gate.io - Coming Soon">
+                <img src="logos/gate_io.jpeg" alt="Gate.io">
+            </a>
+            <a href="#" class="partner-logo coming-soon" title="Coinstore - Coming Soon">
+                <img src="logos/coinstore.png" alt="Coinstore">
+            </a>
+            <a href="https://app.uniswap.org/explore/tokens/ethereum/0x2bab03dcec62324496e000cce2cf4c916d93b289?inputCurrency=NATIVE"
+                target="_blank" class="partner-logo active" title="Uniswap - Listed">
+                <img src="logos/uniswap.png" alt="Uniswap">
+            </a>
+            <a href="https://solana.com" target="_blank" class="partner-logo active" title="Solana - Blockchain">
+                <img src="logos/solana.png" alt="Solana">
+            </a>
+            <a href="https://ethereum.org" target="_blank" class="partner-logo active" title="Ethereum - Blockchain">
+                <img src="logos/ethereum.png" alt="Ethereum">
+            </a>
+            <!-- Duplicate set for seamless loop -->
+            <a href="https://raydium.io" target="_blank" class="partner-logo active" title="Raydium - Listed">
+                <img src="logos/raydium.png" alt="Raydium">
+            </a>
+            <a href="https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p" target="_blank" class="partner-logo active" title="DexScreener - Listed">
+                <img src="logos/dexscreener.png" alt="DexScreener">
+            </a>
+            <a href="#" class="partner-logo coming-soon" title="MEXC - Coming Soon">
+                <img src="logos/mexc.png" alt="MEXC">
+            </a>
+            <a href="#" class="partner-logo coming-soon" title="LBank - Coming Soon">
+                <img src="logos/lbank.png" alt="LBank">
+            </a>
+            <a href="#" class="partner-logo coming-soon" title="Gate.io - Coming Soon">
+                <img src="logos/gate_io.jpeg" alt="Gate.io">
+            </a>
+            <a href="#" class="partner-logo coming-soon" title="Coinstore - Coming Soon">
+                <img src="logos/coinstore.png" alt="Coinstore">
+            </a>
+            <a href="https://app.uniswap.org/explore/tokens/ethereum/0x2bab03dcec62324496e000cce2cf4c916d93b289?inputCurrency=NATIVE"
+                target="_blank" class="partner-logo active" title="Uniswap - Listed">
+                <img src="logos/uniswap.png" alt="Uniswap">
+            </a>
+            <a href="https://solana.com" target="_blank" class="partner-logo active" title="Solana - Blockchain">
+                <img src="logos/solana.png" alt="Solana">
+            </a>
+            <a href="https://ethereum.org" target="_blank" class="partner-logo active" title="Ethereum - Blockchain">
+                <img src="logos/ethereum.png" alt="Ethereum">
+            </a>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="py-20 bg-black/50 relative overflow-hidden">
         <div class="ai-grid absolute inset-0 opacity-10"></div>
@@ -3814,7 +4731,7 @@
 
 
                 <button class="glass px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition neon-border"
-                    onclick="window.open('https://raydium.io/swap/?inputMint=E7cn1nPTEQaUxMm79ycBP4sYeDSNPjupBfwDwr6FcBRz&outputMint=sol', '_blank')">
+                    onclick="window.open('https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol', '_blank')">
 
                     <div class="lottie-logo" id="lottieLogoButton2">
                         <!-- Fallback logo -->
@@ -3826,7 +4743,7 @@
 
 
                 <button class="glass px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition neon-border"
-                    onclick="window.open('https://t.me/+se24ZM5o7ZVmMDM0', '_blank')">
+                    onclick="window.open('https://t.me/+hiHLMRTCpjNjYzI0', '_blank')">
                     <i class="fab fa-telegram mr-2"></i>Join Community
                 </button>
 
@@ -3850,20 +4767,20 @@
                     </div>
                     <p class="text-gray-400 text-sm mb-4">AI-powered gaming revolution on Solana blockchain</p>
                     <div class="flex space-x-3">
-                        <a href="https://x.com/csgoai_" target="_blank"
+                        <a href="https://x.com/csai04" target="_blank"
                             class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-white/10 transition"
                             aria-label="X">
                             <i class="fa-brands fa-x-twitter"></i>
                         </a>
-                        <a href="https://t.me/+se24ZM5o7ZVmMDM0" target="_blank"
+                        <a href="https://t.me/+hiHLMRTCpjNjYzI0" target="_blank"
                             class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-white/10 transition"
                             aria-label="Telegram">
                             <i class="fab fa-telegram text-lg"></i>
                         </a>
-                        <a href="https://medium.com/@csgoai" target="_blank"
+                        <a href="https://www.youtube.com/@CsGoAi" target="_blank"
                             class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-white/10 transition"
-                            aria-label="Medium">
-                            <i class="fab fa-medium text-lg"></i>
+                            aria-label="YouTube">
+                            <i class="fab fa-youtube text-lg"></i>
                         </a>
                     </div>
                 </div>
@@ -3885,15 +4802,15 @@
                 <div>
                     <h4 class="font-bold mb-4 orbitron">Community</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="https://x.com/csgoai_" target="_blank"
+                        <li><a href="https://x.com/csai04" target="_blank"
                                 class="hover:text-purple-400 transition flex items-center"><i
                                     class="fa-brands fa-x-twitter mr-2"></i> X </a></li>
-                        <li><a href="https://t.me/+se24ZM5o7ZVmMDM0" target="_blank"
+                        <li><a href="https://t.me/+hiHLMRTCpjNjYzI0" target="_blank"
                                 class="hover:text-purple-400 transition flex items-center"><i
                                     class="fab fa-telegram mr-2"></i>Telegram</a></li>
-                        <li><a href="https://medium.com/@csgoai" target="_blank"
+                        <li><a href="https://www.youtube.com/@CsGoAi" target="_blank"
                                 class="hover:text-purple-400 transition flex items-center"><i
-                                    class="fab fa-medium mr-2"></i>Medium</a></li>
+                                    class="fab fa-youtube mr-2"></i>YouTube</a></li>
                     </ul>
                 </div>
                 <div>
@@ -4094,6 +5011,34 @@
 
         function closeMobileMenu() {
             mobileMenu.classList.remove('active');
+        }
+
+        // Copy to Clipboard Function for Wallet Addresses
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Store original icon
+                const icon = button.querySelector('i');
+                const originalClass = icon.className;
+                
+                // Change to check icon
+                icon.className = 'fas fa-check text-green-400';
+                
+                // Show success tooltip
+                const tooltip = document.createElement('div');
+                tooltip.textContent = 'Copied!';
+                tooltip.className = 'absolute -top-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-3 py-1 rounded-lg text-sm font-semibold whitespace-nowrap z-50';
+                button.style.position = 'relative';
+                button.appendChild(tooltip);
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    icon.className = originalClass;
+                    tooltip.remove();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy address. Please try again.');
+            });
         }
 
         // Navbar Scroll Effect with throttling
@@ -5267,6 +6212,221 @@
         }
 
         document.addEventListener('DOMContentLoaded', initParallax);
+
+        // ========================================
+        // AI COMPANION - REAL CHATBOT INTEGRATION
+        // ========================================
+
+        const companionHistory = [];
+
+        async function sendCompanionMessage(customText = null) {
+            const input = document.getElementById('companionInput');
+            const container = document.getElementById('aiCompanionMessages');
+            if (!container) return;
+
+            const text = customText || (input ? input.value.trim() : '');
+            if (!text) return;
+
+            // Clear input
+            if (input) input.value = '';
+
+            // Add user message to UI
+            const userDiv = document.createElement('div');
+            userDiv.className = 'flex gap-3 justify-end';
+            userDiv.innerHTML = `
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl rounded-tr-none p-3 max-w-[85%]">
+                    <p class="text-sm text-white">${text}</p>
+                </div>
+                <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-sm flex-shrink-0">👤</div>
+            `;
+            container.appendChild(userDiv);
+
+            // Add to history
+            companionHistory.push({ role: 'user', content: text });
+
+            // Add typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex gap-3 typing-indicator';
+            typingDiv.innerHTML = `
+                <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-sm flex-shrink-0">🤖</div>
+                <div class="glass rounded-2xl rounded-tl-none p-3">
+                    <div class="flex gap-1">
+                        <span class="w-2 h-2 bg-cyan-400 rounded-full animate-bounce"></span>
+                        <span class="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                        <span class="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+
+            try {
+                // Call real AI API
+                const response = await fetch('https://csgoai-chatbot.csgoai-official.workers.dev', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: companionHistory })
+                });
+
+                const data = await response.json();
+                const aiMessage = data.response || 'Sorry, I couldn\'t process that. Try again!';
+
+                // Add to history
+                companionHistory.push({ role: 'assistant', content: aiMessage });
+
+                // Remove typing indicator and add response
+                typingDiv.remove();
+
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'flex gap-3';
+                aiDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-sm flex-shrink-0">🤖</div>
+                    <div class="glass rounded-2xl rounded-tl-none p-3 max-w-[85%]">
+                        <p class="text-sm text-white">${aiMessage.replace(/\n/g, '<br>')}</p>
+                    </div>
+                `;
+                container.appendChild(aiDiv);
+                container.scrollTop = container.scrollHeight;
+
+            } catch (error) {
+                console.error('Companion chat error:', error);
+                typingDiv.remove();
+
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'flex gap-3';
+                errorDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-sm flex-shrink-0">🤖</div>
+                    <div class="glass rounded-2xl rounded-tl-none p-3 max-w-[85%] border border-red-500/30">
+                        <p class="text-sm text-white">Oops! Connection issue. Please try again or use the chat widget in the corner! 🔄</p>
+                    </div>
+                `;
+                container.appendChild(errorDiv);
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        // ========================================
+        // NEW PREMIUM FEATURES JAVASCRIPT
+        // ========================================
+
+        // 1. Live Price Ticker - Fetch from DexScreener API
+        async function fetchTokenPrice() {
+            const tokenAddress = 'CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB';
+            const priceEl = document.getElementById('tokenPrice');
+            const changeEl = document.getElementById('priceChange');
+
+            if (!priceEl || !changeEl) return;
+
+            try {
+                const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`);
+                const data = await response.json();
+
+                if (data.pairs && data.pairs.length > 0) {
+                    const pair = data.pairs[0];
+                    const price = parseFloat(pair.priceUsd);
+                    const change24h = parseFloat(pair.priceChange?.h24 || 0);
+
+                    // Format price
+                    let formattedPrice;
+                    if (price < 0.00001) {
+                        formattedPrice = '$' + price.toFixed(9);
+                    } else if (price < 0.01) {
+                        formattedPrice = '$' + price.toFixed(6);
+                    } else {
+                        formattedPrice = '$' + price.toFixed(4);
+                    }
+
+                    priceEl.textContent = formattedPrice;
+
+                    // Format change
+                    const changePrefix = change24h >= 0 ? '+' : '';
+                    changeEl.textContent = `${changePrefix}${change24h.toFixed(2)}%`;
+                    changeEl.className = `change ${change24h >= 0 ? 'positive' : 'negative'}`;
+                }
+            } catch (error) {
+                console.log('Price fetch error:', error);
+                priceEl.textContent = '$0.000007';
+            }
+        }
+
+        // Fetch price on load and every 30 seconds
+        fetchTokenPrice();
+        setInterval(fetchTokenPrice, 30000);
+
+        // 2. Staking Calculator
+        function initStakingCalculator() {
+            const slider = document.getElementById('stakeAmount');
+            const display = document.getElementById('stakeDisplay');
+            const earnings = document.getElementById('stakeEarnings');
+            const periodBtns = document.querySelectorAll('.stake-period-btn');
+
+            if (!slider || !display || !earnings) return;
+
+            let selectedDays = 90; // Default 90 days
+            const baseAPY = 0.15; // 15% APY
+
+            function calculateEarnings() {
+                const amount = parseInt(slider.value);
+                const dailyRate = baseAPY / 365;
+                const earned = Math.floor(amount * dailyRate * selectedDays);
+
+                display.textContent = amount.toLocaleString() + ' CSAI';
+                earnings.textContent = '+' + earned.toLocaleString() + ' CSAI';
+            }
+
+            slider.addEventListener('input', calculateEarnings);
+
+            periodBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    periodBtns.forEach(b => {
+                        b.classList.remove('border-purple-500', 'bg-purple-500/20');
+                        b.classList.add('border-white/10');
+                    });
+                    btn.classList.remove('border-white/10');
+                    btn.classList.add('border-purple-500', 'bg-purple-500/20');
+
+                    selectedDays = parseInt(btn.dataset.days);
+                    calculateEarnings();
+                });
+            });
+
+            calculateEarnings();
+        }
+
+        document.addEventListener('DOMContentLoaded', initStakingCalculator);
+
+        // 3. Animated Burn Counter
+        function animateBurnCounter() {
+            const burnEl = document.getElementById('burnCounter');
+            if (!burnEl) return;
+
+            const target = 180000000;
+            const duration = 2000;
+            const steps = 60;
+            const increment = target / steps;
+            let current = 0;
+            const stepDuration = duration / steps;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const interval = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(interval);
+                            }
+                            burnEl.textContent = Math.floor(current).toLocaleString();
+                        }, stepDuration);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(burnEl);
+        }
+
+        document.addEventListener('DOMContentLoaded', animateBurnCounter);
     </script>
     <script src="widget.js"></script>
     <style>
