@@ -192,11 +192,7 @@
                 animation: none !important;
             }
 
-            /* Reduce scroll progress glow */
-            .scroll-progress {
-                box-shadow: none;
-                height: 2px;
-            }
+            /* Scroll progress removed for performance */
         }
 
         /* Respect reduced motion preference */
@@ -219,59 +215,9 @@
             }
         }
 
-        /* Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-orange));
-            z-index: 99999;
-            transition: width 0.1s ease;
-            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-magenta);
-        }
+        /* Scroll Progress Bar - REMOVED FOR PERFORMANCE */
 
-        /* Premium Page Loader */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color);
-            z-index: 999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--neon-cyan);
-            border-right-color: var(--neon-magenta);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .loader-text {
-            margin-top: 20px;
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-cyan);
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            animation: pulse-text 1.5s ease-in-out infinite;
-        }
+        /* Premium Page Loader - REMOVED FOR PERFORMANCE */
 
         @keyframes spin {
             to {
@@ -2674,75 +2620,7 @@
             }
         }
 
-        /* Loading Animations */
-        .loader-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-out;
-        }
-
-        .loader-container.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .csgo-loader {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            animation: loaderPulse 2s ease-in-out infinite;
-        }
-
-        .csgo-loader::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: conic-gradient(from 180deg, #ff8c00, #ffa500, #ff6600, #ff8c00);
-            border-radius: 50%;
-            animation: loaderRotate 1.5s linear infinite;
-            filter: blur(2px);
-        }
-
-        .csgo-loader-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            background: #0a0a0f;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 24px;
-            color: #ff8c00;
-            text-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
-        }
-
-        .loading-text {
-            margin-top: 30px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            animation: loadingGlow 2s ease-in-out infinite;
-        }
+        /* Loading Animations - REMOVED FOR PERFORMANCE */
 
         @keyframes loaderPulse {
 
@@ -3757,27 +3635,10 @@
 </head>
 
 <body>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Premium Page Loader -->
-    <div class="page-loader" id="pageLoader">
-        <div class="loader-spinner"></div>
-        <div class="loader-text">Loading</div>
-    </div>
-
     <!-- Custom Cursor Elements -->
     <div class="custom-cursor" id="customCursor"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
     <div class="cursor-dot" id="cursorDot"></div>
-
-    <!-- Loading Screen -->
-    <div class="loader-container" id="loader" style="display: none;">
-        <div class="csgo-loader">
-            <div class="csgo-loader-content">AI</div>
-        </div>
-        <div class="loading-text">Loading CSAI...</div>
-    </div>
 
     <!-- Skip to Content Link for Accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -5722,35 +5583,13 @@
         const isPremiumMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // 1. Page Loader
+        // Page Loader and Scroll Progress removed for performance
+        // Trigger staggered animations on load
         window.addEventListener('load', function () {
-            const pageLoader = document.getElementById('pageLoader');
-            if (pageLoader) {
-                // Faster on mobile
-                const delay = isPremiumMobile ? 400 : 800;
-                setTimeout(() => {
-                    pageLoader.classList.add('hidden');
-                    // Trigger staggered animations after load
-                    if (!isPremiumMobile) {
-                        triggerStaggeredAnimations();
-                    }
-                }, delay);
+            if (!isPremiumMobile) {
+                triggerStaggeredAnimations();
             }
         });
-
-        // 2. Scroll Progress Bar (works on mobile too - lightweight)
-        function updateScrollProgress() {
-            const scrollProgress = document.getElementById('scrollProgress');
-            if (!scrollProgress) return;
-
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-
-            scrollProgress.style.width = scrollPercent + '%';
-        }
-
-        window.addEventListener('scroll', updateScrollProgress);
 
         // 3. Magnetic Buttons - DESKTOP ONLY
         function initMagneticButtons() {
