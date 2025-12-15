@@ -167,8 +167,8 @@
             /* Simplify glass effects */
             .glass,
             .glass-premium {
-                backdrop-filter: blur(10px) !important;
-                -webkit-backdrop-filter: blur(10px) !important;
+                backdrop-filter: blur(5px) !important;
+                -webkit-backdrop-filter: blur(5px) !important;
             }
 
             /* Disable 3D tilt on mobile */
@@ -592,8 +592,8 @@
         /* Glass Morphism - Premium Upgrade */
         .glass {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05),
                 0 20px 50px rgba(0, 0, 0, 0.3);
@@ -601,8 +601,8 @@
 
         .glass-premium {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
                 inset 0 -1px 1px rgba(0, 0, 0, 0.1),
@@ -867,14 +867,64 @@
 
         /* Navigation */
         nav {
-            backdrop-filter: blur(10px);
-            background: rgba(10, 10, 15, 0.8);
-            transition: all var(--transition-speed) ease;
+            backdrop-filter: blur(5px);
+            background: rgba(10, 10, 15, 0.85);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: top;
         }
 
         nav.scrolled {
             background: rgba(10, 10, 15, 0.95);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Smart Compressed Navigation - Links stay visible but compressed */
+        nav.minimized .py-4 {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.minimized .hidden.md\:flex {
+            gap: 1rem !important;
+            font-size: 0.85rem !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.minimized .hidden.md\:flex a {
+            padding: 0.25rem 0.5rem;
+            transition: all 0.4s ease;
+        }
+
+        nav.minimized .cyber-button {
+            transform: scale(0.9);
+            padding: 0.5rem 1.25rem !important;
+            font-size: 0.9rem !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.minimized .main-logo {
+            width: 40px !important;
+            height: 40px !important;
+            transition: all 0.4s ease;
+        }
+
+        nav.minimized .main-logo img {
+            width: 36px !important;
+            height: 36px !important;
+        }
+
+        nav.minimized .text-3xl {
+            font-size: 1.5rem !important;
+            transition: all 0.4s ease;
+        }
+
+        /* Smooth transitions when returning to normal */
+        nav:not(.minimized) .hidden.md\:flex,
+        nav:not(.minimized) .cyber-button,
+        nav:not(.minimized) .main-logo,
+        nav:not(.minimized) .text-3xl {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Cursor Effects (Desktop Only) */
@@ -4654,10 +4704,17 @@
                                     class="fas fa-chevron-right mr-2 text-xs"></i>Features</a></li>
                         <li><a href="#markets" class="hover:text-purple-400 transition flex items-center"><i
                                     class="fas fa-chevron-right mr-2 text-xs"></i>Markets</a></li>
+                        <li><a href="#tokenomics" class="hover:text-purple-400 transition flex items-center"><i
+                                    class="fas fa-chevron-right mr-2 text-xs"></i>Tokenomics</a></li>
+                        <li><a href="#wallets" class="hover:text-purple-400 transition flex items-center"><i
+                                    class="fas fa-chevron-right mr-2 text-xs"></i>Wallets</a></li>
                         <li><a href="#roadmap" class="hover:text-purple-400 transition flex items-center"><i
                                     class="fas fa-chevron-right mr-2 text-xs"></i>Roadmap</a></li>
+                        <li><a href="#faq" class="hover:text-purple-400 transition flex items-center"><i
+                                    class="fas fa-chevron-right mr-2 text-xs"></i>FAQ</a></li>
                         <li><a href="#whitepaper" class="hover:text-purple-400 transition flex items-center"><i
                                     class="fas fa-chevron-right mr-2 text-xs"></i>Whitepaper</a></li>
+                        
                     </ul>
                 </div>
                 <div>
@@ -4902,16 +4959,33 @@
             });
         }
 
-        // Navbar Scroll Effect with throttling
+        // Smart Navbar with Scroll Direction Detection
         const navbar = document.getElementById('navbar');
         let scrollTicking = false;
+        let lastScrollY = 0;
+        let scrollDirection = 'up';
 
         function updateNavbar() {
-            if (window.scrollY > 50) {
+            const currentScrollY = window.scrollY;
+            
+            // Detect scroll direction
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                scrollDirection = 'down';
+                navbar.classList.add('minimized');
+            } else if (currentScrollY < lastScrollY) {
+                scrollDirection = 'up';
+                navbar.classList.remove('minimized');
+            }
+
+            // Standard scrolled effect
+            if (currentScrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+                navbar.classList.remove('minimized');
             }
+
+            lastScrollY = currentScrollY;
             scrollTicking = false;
         }
 
