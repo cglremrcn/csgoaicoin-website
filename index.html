@@ -3848,11 +3848,19 @@
             <!-- Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
                 <div class="glass rounded-2xl p-6 card-hover neon-border" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="text-4xl font-black gradient-text stat-counter" data-target="20000">$20K+</div>
-                    <div class="text-gray-400 mt-2 font-semibold">Market Cap</div>
+                    <div id="liveMarketCapDisplay" class="text-4xl font-black gradient-text stat-counter">$20K+</div>
+                    <div class="text-gray-400 mt-2 font-semibold flex items-center justify-center gap-2">
+                        Market Cap
+                        <span class="flex h-3 w-3 relative">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <span class="text-xs text-green-500 font-bold">LIVE</span>
+                    </div>
                 </div>
                 <div class="glass rounded-2xl p-6 card-hover neon-border" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="text-gray-400 mt-2 font-semibold">Building...</div>
+                    <div class="text-4xl font-black gradient-text stat-counter" data-target="1000">1000+</div>
                     <div class="text-gray-400 mt-2 font-semibold">Community</div>
                 </div>
                 <div class="glass rounded-2xl p-6 card-hover neon-border" data-aos="zoom-in" data-aos-delay="300">
@@ -4013,7 +4021,8 @@
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
                         data-aos-delay="100"
                         onclick="window.open('https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol', '_blank')">
-                        <img src="logos/raydium.png" alt="Raydium" class="w-20 h-20 mx-auto mb-4 object-contain" loading="lazy">
+                        <img src="logos/raydium.png" alt="Raydium" class="w-20 h-20 mx-auto mb-4 object-contain"
+                            loading="lazy">
                         <h4 class="text-xl font-bold mb-2">Raydium</h4>
                         <p class="text-gray-400 text-sm mb-4">Solana's leading DEX</p>
                         <button class="btn-primary px-6 py-3 rounded-full text-sm font-semibold w-full">
@@ -4023,7 +4032,8 @@
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
                         data-aos-delay="150"
                         onclick="window.open('https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p', '_blank')">
-                        <img src="logos/dexscreener.png" alt="DexScreener" class="w-20 h-20 mx-auto mb-4 object-contain" loading="lazy">
+                        <img src="logos/dexscreener.png" alt="DexScreener" class="w-20 h-20 mx-auto mb-4 object-contain"
+                            loading="lazy">
                         <h4 class="text-xl font-bold mb-2">DexScreener</h4>
                         <p class="text-gray-400 text-sm mb-4">Real-time DEX analytics</p>
                         <button class="btn-primary px-6 py-3 rounded-full text-sm font-semibold w-full">
@@ -4033,9 +4043,10 @@
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
                         data-aos-delay="200"
                         onclick="window.open('https://app.uniswap.org/explore/tokens/ethereum/0x2bab03dcec62324496e000cce2cf4c916d93b289?inputCurrency=NATIVE', '_blank')">
-                        <img src="logos/uniswap.png" alt="Uniswap" class="w-20 h-20 mx-auto mb-4 object-contain" loading="lazy">
+                        <img src="logos/uniswap.png" alt="Uniswap" class="w-20 h-20 mx-auto mb-4 object-contain"
+                            loading="lazy">
                         <h4 class="text-xl font-bold mb-2">Uniswap</h4>
-                        <p class="text-gray-400 text-sm mb-4">Leading Ethereum DEX</p>
+                        <p class="text-gray-400 text-sm mb-4">Now Live on Ethereum!</p>
                         <button class="btn-primary px-6 py-3 rounded-full text-sm font-semibold w-full">
                             <i class="fas fa-arrow-right mr-2"></i>Trade Now
                         </button>
@@ -4052,7 +4063,8 @@
                 <div class="grid md:grid-cols-4 gap-10 w-fit mx-auto">
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
                         data-aos-delay="100" onclick="window.open('https://www.coinstore.com/', '_blank')">
-                        <img src="logos/coinstore.png" alt="Coinstore" class="w-16 h-16 mx-auto mb-4 object-contain" loading="lazy">
+                        <img src="logos/coinstore.png" alt="Coinstore" class="w-16 h-16 mx-auto mb-4 object-contain"
+                            loading="lazy">
                         <h4 class="text-lg font-bold mb-2">Coinstore</h4>
                         <p class="text-gray-400 text-xs mb-3">Coming Soon</p>
                         <div class="text-sm text-yellow-400 font-semibold">
@@ -4061,7 +4073,8 @@
                     </div>
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
                         data-aos-delay="200" onclick="window.open('https://www.lbank.com/', '_blank')">
-                        <img src="logos/lbank.png" alt="LBank" class="w-16 h-16 mx-auto mb-4 object-contain" loading="lazy">
+                        <img src="logos/lbank.png" alt="LBank" class="w-16 h-16 mx-auto mb-4 object-contain"
+                            loading="lazy">
                         <h4 class="text-lg font-bold mb-2">LBank</h4>
                         <p class="text-gray-400 text-xs mb-3">Coming Soon</p>
                         <div class="text-sm text-yellow-400 font-semibold">
@@ -4070,7 +4083,8 @@
                     </div>
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
                         data-aos-delay="300" onclick="window.open('https://www.mexc.com/', '_blank')">
-                        <img src="logos/mexc.png" alt="MEXC" class="w-16 h-16 mx-auto mb-4 object-contain" loading="lazy">
+                        <img src="logos/mexc.png" alt="MEXC" class="w-16 h-16 mx-auto mb-4 object-contain"
+                            loading="lazy">
                         <h4 class="text-lg font-bold mb-2">MEXC</h4>
                         <p class="text-gray-400 text-xs mb-3">Coming Soon</p>
                         <div class="text-sm text-yellow-400 font-semibold">
@@ -4079,7 +4093,8 @@
                     </div>
                     <div class="market-card glass rounded-2xl p-6 text-center neon-border" data-aos="zoom-in"
                         data-aos-delay="400" onclick="window.open('https://www.gate.io/', '_blank')">
-                        <img src="logos/gate_io.jpeg" alt="Gate.io" class="w-16 h-16 mx-auto mb-4 object-contain" loading="lazy">
+                        <img src="logos/gate_io.jpeg" alt="Gate.io" class="w-16 h-16 mx-auto mb-4 object-contain"
+                            loading="lazy">
                         <h4 class="text-lg font-bold mb-2">Gate.io</h4>
                         <p class="text-gray-400 text-xs mb-3">Coming Soon</p>
                         <div class="text-sm text-yellow-400 font-semibold">
@@ -4162,89 +4177,101 @@
                 </p>
             </div>
 
-            <div class="glass rounded-3xl p-12 max-w-6xl mx-auto neon-border relative overflow-hidden" data-aos="fade-up">
+            <div class="glass rounded-3xl p-12 max-w-6xl mx-auto neon-border relative overflow-hidden"
+                data-aos="fade-up">
                 <div class="ai-scanner"></div>
                 <div class="space-y-6 relative z-10">
-                    
+
                     <!-- CEX Wallets -->
                     <div class="mb-8">
                         <h3 class="text-2xl font-bold mb-4 gradient-text orbitron">
                             <i class="fas fa-exchange-alt mr-3"></i>CEX Reserve Wallets
                         </h3>
                         <p class="text-gray-400 text-sm mb-6">
-                            The total CEX liquidity allocation is distributed across multiple independent reserve wallets (A–E)
+                            The total CEX liquidity allocation is distributed across multiple independent reserve
+                            wallets (A–E)
                         </p>
                         <div class="grid md:grid-cols-2 gap-4">
                             <!-- CEX 1 -->
-                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
+                            <div
+                                class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center font-bold">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center font-bold">
                                         1
                                     </div>
                                     <span class="font-semibold text-gray-300">CEX liquidity A</span>
                                 </div>
-                                <button onclick="copyToClipboard('HhMy1dMV9FCYEhFMtZtE2tBdhPnb2vv3bUg6Nzgrsu1G', this)" 
-                                        class="flex items-center space-x-2 px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 rounded-lg transition">
+                                <button onclick="copyToClipboard('HhMy1dMV9FCYEhFMtZtE2tBdhPnb2vv3bUg6Nzgrsu1G', this)"
+                                    class="flex items-center space-x-2 px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 rounded-lg transition">
                                     <span class="text-xs font-mono text-gray-400 hidden sm:inline">HhMy1d...su1G</span>
                                     <i class="fas fa-copy text-purple-400"></i>
                                 </button>
                             </div>
 
                             <!-- CEX 2 -->
-                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
+                            <div
+                                class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center font-bold">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center font-bold">
                                         2
                                     </div>
                                     <span class="font-semibold text-gray-300">CEX liquidity B</span>
                                 </div>
-                                <button onclick="copyToClipboard('2hfKzqJ1m78FkANToWbuou7d7mKY8EC94mZJhBVFEnvK', this)" 
-                                        class="flex items-center space-x-2 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg transition">
+                                <button onclick="copyToClipboard('2hfKzqJ1m78FkANToWbuou7d7mKY8EC94mZJhBVFEnvK', this)"
+                                    class="flex items-center space-x-2 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg transition">
                                     <span class="text-xs font-mono text-gray-400 hidden sm:inline">2hfKzq...EnvK</span>
                                     <i class="fas fa-copy text-blue-400"></i>
                                 </button>
                             </div>
 
                             <!-- CEX 3 -->
-                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
+                            <div
+                                class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-full flex items-center justify-center font-bold">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-full flex items-center justify-center font-bold">
                                         3
                                     </div>
                                     <span class="font-semibold text-gray-300">CEX liquidity C</span>
                                 </div>
-                                <button onclick="copyToClipboard('HgJ5PVB6JugSo53btLKWBT2C5YGoUcGgXe5T8etvgvVr', this)" 
-                                        class="flex items-center space-x-2 px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-lg transition">
+                                <button onclick="copyToClipboard('HgJ5PVB6JugSo53btLKWBT2C5YGoUcGgXe5T8etvgvVr', this)"
+                                    class="flex items-center space-x-2 px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-lg transition">
                                     <span class="text-xs font-mono text-gray-400 hidden sm:inline">HgJ5PV...gvVr</span>
                                     <i class="fas fa-copy text-cyan-400"></i>
                                 </button>
                             </div>
 
                             <!-- CEX 4 -->
-                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
+                            <div
+                                class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-teal-500 to-green-500 rounded-full flex items-center justify-center font-bold">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-br from-teal-500 to-green-500 rounded-full flex items-center justify-center font-bold">
                                         4
                                     </div>
                                     <span class="font-semibold text-gray-300">CEX liquidity D</span>
                                 </div>
-                                <button onclick="copyToClipboard('4ziST2FKvEhzMfMjdRxMVCD1ecCL2VYWiwrYJ3wVSHxg', this)" 
-                                        class="flex items-center space-x-2 px-4 py-2 bg-teal-500/20 hover:bg-teal-500/30 rounded-lg transition">
+                                <button onclick="copyToClipboard('4ziST2FKvEhzMfMjdRxMVCD1ecCL2VYWiwrYJ3wVSHxg', this)"
+                                    class="flex items-center space-x-2 px-4 py-2 bg-teal-500/20 hover:bg-teal-500/30 rounded-lg transition">
                                     <span class="text-xs font-mono text-gray-400 hidden sm:inline">4ziST2...SHxg</span>
                                     <i class="fas fa-copy text-teal-400"></i>
                                 </button>
                             </div>
 
                             <!-- CEX 5 -->
-                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group md:col-span-2">
+                            <div
+                                class="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition group md:col-span-2">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center font-bold">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center font-bold">
                                         5
                                     </div>
                                     <span class="font-semibold text-gray-300">CEX liquidity E</span>
                                 </div>
-                                <button onclick="copyToClipboard('8pNbSicGAuJMjVZGqh8TLRMd7yjG6MsrwyVgxSvivLyC', this)" 
-                                        class="flex items-center space-x-2 px-4 py-2 bg-green-500/20 hover:bg-green-500/30 rounded-lg transition">
+                                <button onclick="copyToClipboard('8pNbSicGAuJMjVZGqh8TLRMd7yjG6MsrwyVgxSvivLyC', this)"
+                                    class="flex items-center space-x-2 px-4 py-2 bg-green-500/20 hover:bg-green-500/30 rounded-lg transition">
                                     <span class="text-xs font-mono text-gray-400 hidden sm:inline">8pNbSi...vLyC</span>
                                     <i class="fas fa-copy text-green-400"></i>
                                 </button>
@@ -4255,34 +4282,38 @@
                     <!-- Special Wallets -->
                     <div class="grid md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
                         <!-- Airdrop Wallet -->
-                        <div class="p-6 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition">
+                        <div
+                            class="p-6 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-gift text-white text-xl"></i>
                                 </div>
                                 <h4 class="text-xl font-bold gradient-text">Airdrop Wallet</h4>
                             </div>
                             <div class="flex items-center justify-between p-3 bg-black/30 rounded-lg">
                                 <span class="text-xs font-mono text-gray-400 break-all">C1FP74...1b5DX</span>
-                                <button onclick="copyToClipboard('C1FP74GhWCGk92EusqtDusZRXaKQHZos2Wy1TzG1b5DX', this)" 
-                                        class="ml-3 px-3 py-2 bg-pink-500/20 hover:bg-pink-500/30 rounded-lg transition">
+                                <button onclick="copyToClipboard('C1FP74GhWCGk92EusqtDusZRXaKQHZos2Wy1TzG1b5DX', this)"
+                                    class="ml-3 px-3 py-2 bg-pink-500/20 hover:bg-pink-500/30 rounded-lg transition">
                                     <i class="fas fa-copy text-pink-400"></i>
                                 </button>
                             </div>
                         </div>
 
                         <!-- Burn Wallet -->
-                        <div class="p-6 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl border border-orange-500/20 hover:border-orange-500/40 transition">
+                        <div
+                            class="p-6 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl border border-orange-500/20 hover:border-orange-500/40 transition">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-fire text-white text-xl"></i>
                                 </div>
                                 <h4 class="text-xl font-bold gradient-text">Burn Wallet</h4>
                             </div>
                             <div class="flex items-center justify-between p-3 bg-black/30 rounded-lg">
                                 <span class="text-xs font-mono text-gray-400 break-all">DyVBDZ...W6gGe</span>
-                                <button onclick="copyToClipboard('DyVBDZVyGFdJngoQZfmdb34MkPayeoVeU91phDbW6gGe', this)" 
-                                        class="ml-3 px-3 py-2 bg-orange-500/20 hover:bg-orange-500/30 rounded-lg transition">
+                                <button onclick="copyToClipboard('DyVBDZVyGFdJngoQZfmdb34MkPayeoVeU91phDbW6gGe', this)"
+                                    class="ml-3 px-3 py-2 bg-orange-500/20 hover:bg-orange-500/30 rounded-lg transition">
                                     <i class="fas fa-copy text-orange-400"></i>
                                 </button>
                             </div>
@@ -4295,7 +4326,7 @@
                             <i class="fas fa-info-circle text-blue-400 text-xl mt-1"></i>
                             <div>
                                 <p class="text-sm text-gray-300 leading-relaxed">
-                                    All wallet addresses are publicly verifiable on the Solana blockchain. 
+                                    All wallet addresses are publicly verifiable on the Solana blockchain.
                                     Click the copy icon to copy the full wallet address.
                                 </p>
                             </div>
@@ -4563,10 +4594,12 @@
         </div>
         <div class="partners-track" id="partnersTrack">
             <!-- First set -->
-            <a href="https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol" target="_blank" class="partner-logo active" title="Raydium - Listed">
+            <a href="https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol"
+                target="_blank" class="partner-logo active" title="Raydium - Listed">
                 <img src="logos/raydium.png" alt="Raydium">
             </a>
-            <a href="https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p" target="_blank" class="partner-logo active" title="DexScreener - Listed">
+            <a href="https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p" target="_blank"
+                class="partner-logo active" title="DexScreener - Listed">
                 <img src="logos/dexscreener.png" alt="DexScreener">
             </a>
             <a href="#" class="partner-logo coming-soon" title="MEXC - Coming Soon">
@@ -4595,7 +4628,8 @@
             <a href="https://raydium.io" target="_blank" class="partner-logo active" title="Raydium - Listed">
                 <img src="logos/raydium.png" alt="Raydium">
             </a>
-            <a href="https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p" target="_blank" class="partner-logo active" title="DexScreener - Listed">
+            <a href="https://dexscreener.com/solana/7tjvhxm2ujdyobx83gtgjbjyhn1gqxvl9mc5qtofns5p" target="_blank"
+                class="partner-logo active" title="DexScreener - Listed">
                 <img src="logos/dexscreener.png" alt="DexScreener">
             </a>
             <a href="#" class="partner-logo coming-soon" title="MEXC - Coming Soon">
@@ -4714,7 +4748,7 @@
                                     class="fas fa-chevron-right mr-2 text-xs"></i>FAQ</a></li>
                         <li><a href="#whitepaper" class="hover:text-purple-400 transition flex items-center"><i
                                     class="fas fa-chevron-right mr-2 text-xs"></i>Whitepaper</a></li>
-                        
+
                     </ul>
                 </div>
                 <div>
@@ -4937,17 +4971,17 @@
                 // Store original icon
                 const icon = button.querySelector('i');
                 const originalClass = icon.className;
-                
+
                 // Change to check icon
                 icon.className = 'fas fa-check text-green-400';
-                
+
                 // Show success tooltip
                 const tooltip = document.createElement('div');
                 tooltip.textContent = 'Copied!';
                 tooltip.className = 'absolute -top-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-3 py-1 rounded-lg text-sm font-semibold whitespace-nowrap z-50';
                 button.style.position = 'relative';
                 button.appendChild(tooltip);
-                
+
                 // Reset after 2 seconds
                 setTimeout(() => {
                     icon.className = originalClass;
@@ -4967,7 +5001,7 @@
 
         function updateNavbar() {
             const currentScrollY = window.scrollY;
-            
+
             // Detect scroll direction
             if (currentScrollY > lastScrollY && currentScrollY > 100) {
                 scrollDirection = 'down';
@@ -6151,8 +6185,9 @@
             const tokenAddress = 'CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB';
             const priceEl = document.getElementById('tokenPrice');
             const changeEl = document.getElementById('priceChange');
+            const mcapEl = document.getElementById('liveMarketCapDisplay');
 
-            if (!priceEl || !changeEl) return;
+            if (!priceEl && !changeEl && !mcapEl) return;
 
             try {
                 const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`);
@@ -6163,26 +6198,35 @@
                     const price = parseFloat(pair.priceUsd);
                     const change24h = parseFloat(pair.priceChange?.h24 || 0);
 
-                    // Format price
-                    let formattedPrice;
-                    if (price < 0.00001) {
-                        formattedPrice = '$' + price.toFixed(9);
-                    } else if (price < 0.01) {
-                        formattedPrice = '$' + price.toFixed(6);
-                    } else {
-                        formattedPrice = '$' + price.toFixed(4);
+                    // Update Price
+                    if (priceEl) {
+                        let formattedPrice;
+                        if (price < 0.00001) {
+                            formattedPrice = '$' + price.toFixed(9);
+                        } else if (price < 0.01) {
+                            formattedPrice = '$' + price.toFixed(6);
+                        } else {
+                            formattedPrice = '$' + price.toFixed(4);
+                        }
+                        priceEl.textContent = formattedPrice;
                     }
 
-                    priceEl.textContent = formattedPrice;
+                    // Update Change
+                    if (changeEl) {
+                        const changePrefix = change24h >= 0 ? '+' : '';
+                        changeEl.textContent = `${changePrefix}${change24h.toFixed(2)}%`;
+                        changeEl.className = `change ${change24h >= 0 ? 'positive' : 'negative'}`;
+                    }
 
-                    // Format change
-                    const changePrefix = change24h >= 0 ? '+' : '';
-                    changeEl.textContent = `${changePrefix}${change24h.toFixed(2)}%`;
-                    changeEl.className = `change ${change24h >= 0 ? 'positive' : 'negative'}`;
+                    // Update Market Cap
+                    if (mcapEl && pair.fdv) {
+                        const mcap = Math.floor(pair.fdv);
+                        mcapEl.textContent = '$' + mcap.toLocaleString();
+                    }
                 }
             } catch (error) {
                 console.log('Price fetch error:', error);
-                priceEl.textContent = '$0.000007';
+                if (priceEl) priceEl.textContent = '$0.000007';
             }
         }
 

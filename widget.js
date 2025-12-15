@@ -854,6 +854,7 @@
                 <div class="chip">📊 Chart</div>
                 <div class="chip">🚀 Roadmap</div>
                 <div class="chip">🛒 How to Buy</div>
+                <div class="chip">🦄 Uniswap Link</div>
                 <div class="chip">🔗 Raydium Link</div>
                 <div class="chip">📄 Whitepaper</div>
             </div>
@@ -1252,6 +1253,19 @@
                 const rushMsg = '<strong>Don\'t Stop! Go Go Go! 🔫</strong><br><a href="https://raydium.io/swap/?inputMint=CS1iCxPUextoJYCGhNfKpWaw1odfpxJNZBr6sodfCexB&outputMint=sol" target="_blank" style="color: #00ff00; font-weight: bold;">BUY NOW ON RAYDIUM</a>';
                 addMessageToUI(rushMsg, 'bot', false);
                 messageHistory.push({ role: 'assistant', content: rushMsg });
+                saveHistory();
+                typingIndicator.style.display = 'none';
+                playSound();
+            }, 600);
+            return;
+        }
+
+        // 🦄 Feature: Uniswap Link
+        if (lowerText.includes('uniswap')) {
+            setTimeout(() => {
+                const uniswapMsg = '<strong>Trade on Uniswap (Ethereum) 🦄</strong><br><a href="https://app.uniswap.org/explore/tokens/ethereum/0x2bab03dcec62324496e000cce2cf4c916d93b289?inputCurrency=NATIVE" target="_blank" style="color: #ff00ff; font-weight: bold;">OPEN UNISWAP</a>';
+                addMessageToUI(uniswapMsg, 'bot', false);
+                messageHistory.push({ role: 'assistant', content: "Shared Uniswap Link." });
                 saveHistory();
                 typingIndicator.style.display = 'none';
                 playSound();
