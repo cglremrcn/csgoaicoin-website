@@ -20,3 +20,11 @@ worker.js
 # Editor Settings
 .vscode/
 .idea/
+
+# Reports
+lighthouse-report.report.html
+lighthouse-report.report.json
+
+# Future Projects
+cs2-ai-companion/
+jpg and pngs/
