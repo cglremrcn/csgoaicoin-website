@@ -1,0 +1,6 @@
+name = "csgoai-chatbot"
+main = "worker.js"
+compatibility_date = "2024-12-06"
+
+[ai]
+binding = "AI"

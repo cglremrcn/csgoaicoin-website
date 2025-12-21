@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Cloudflare & Secrets
+.wrangler/
+.env
+worker.js
+.worker
+
+# Editor Settings
+.vscode/
+.idea/
