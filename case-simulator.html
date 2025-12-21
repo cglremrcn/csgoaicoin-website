@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Case Simulator - CSAI | Open Cases with Authentic Drop Rates</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Experience authentic CS2 case opening with real Valve drop rates. Open cases, test your luck, and collect skins with CSAI coins.">
+    <meta name="keywords" content="CS2, CSGO, case opening, simulator, skins, CSAI, drop rates">
+    <meta name="author" content="CSAI">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="CS2 Case Simulator - CSAI">
+    <meta property="og:description" content="Experience authentic CS2 case opening with real Valve drop rates.">
+    <meta property="og:image" content="https://csaicoin.com/logos/csgo_coinlogo3.png">
+    <meta property="og:url" content="https://csaicoin.com/case-simulator.html">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logos/csgo_coinlogo3.png">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://raw.githubusercontent.com">
+
+    <!-- External Resources -->
+    <script src="https://cdn.tailwindcss.com/3.4.0"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Copied Core Styles from index.html for consistency */
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #fbbf24;
+            --text-color: #ffffff;
+            --bg-color: #050508;
+            --transition-speed: 0.3s;
+            --neon-gold: #ffd700;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Glass Effects */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-premium {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(1);
+        }
+
+        .csgo-animated-gradient {
+            background: linear-gradient(90deg, #ff8c00, #ffa500, #ff6600, #ffd700, #ff6600, #ffa500, #ff8c00);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 5px rgba(255, 102, 0, 0.7));
+            animation: csgo-shine 3s linear infinite;
+        }
+
+        @keyframes csgo-shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .gradient-text-yellow {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Main Logo */
+        .main-logo-content {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Simulator Specifics */
+        .roulette-wrapper {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .roulette-track {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            /* width will be calculated dynamically or just allow flex grow */
+            will-change: transform;
+        }
+
+        /* Center Line Marker */
+        .center-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #ffd700;
+            transform: translateX(-50%);
+            z-index: 20;
+            box-shadow: 0 0 15px #ffd700;
+        }
+
+        /* GPU Acceleration for smooth animations */
+        .roulette-track {
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- PASSWORD PROTECTION - EARLY ACCESS -->
+    <div id="password-gate" class="fixed inset-0 z-[200] bg-black flex items-center justify-center">
+        <div class="glass-premium p-8 rounded-2xl max-w-md w-full mx-4 text-center border border-yellow-500/30">
+            <div class="mb-6">
+                <img src="logos/csgo_coinlogo3.webp" alt="CSAI Logo" class="w-20 h-20 mx-auto mb-4">
+                <h1 class="text-3xl font-bold orbitron csgo-animated-gradient mb-2">EARLY ACCESS</h1>
+                <p class="text-gray-400 text-sm">This simulator is currently available to invited users only.</p>
+            </div>
+
+            <div class="space-y-4">
+                <input type="password" id="access-password" placeholder="Access Code"
+                    class="w-full px-4 py-3 rounded-full bg-black/50 border border-white/20 text-white text-center focus:border-yellow-500 focus:outline-none transition"
+                    onkeypress="if(event.key==='Enter') checkPassword()">
+                <button onclick="checkPassword()"
+                    class="w-full px-6 py-3 rounded-full font-bold text-lg bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 transition-all text-black">
+                    ENTER
+                </button>
+                <p id="password-error" class="text-red-500 text-sm hidden">Invalid password. Please try again.</p>
+            </div>
+
+            <p class="text-gray-500 text-xs mt-6">
+                <i class="fas fa-lock mr-1"></i> Contact your streamer to get the access code.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Server-side Password Protection
+        const AUTH_ENDPOINT = 'https://csgoai-chatbot.csgoai-official.workers.dev/auth';
+
+        async function checkPassword() {
+            const input = document.getElementById('access-password');
+            const error = document.getElementById('password-error');
+            const gate = document.getElementById('password-gate');
+            const btn = document.querySelector('#password-gate button');
+
+            btn.disabled = true;
+            btn.textContent = 'CHECKING';
+
+            try {
+                const response = await fetch(AUTH_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: input.value })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    gate.style.opacity = '0';
+                    gate.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => {
+                        gate.style.display = 'none';
+                    }, 500);
+                    sessionStorage.setItem('csai_access', 'granted');
+                } else {
+                    error.classList.remove('hidden');
+                    input.classList.add('border-red-500');
+                    input.value = '';
+                    btn.disabled = false;
+                    btn.textContent = 'ENTER';
+                    setTimeout(() => {
+                        error.classList.add('hidden');
+                        input.classList.remove('border-red-500');
+                    }, 2000);
+                }
+            } catch (e) {
+                error.textContent = 'Connection error. Please try again.';
+                error.classList.remove('hidden');
+                btn.disabled = false;
+                btn.textContent = 'ENTER';
+            }
+        }
+
+        // Check if already authenticated
+        if (sessionStorage.getItem('csai_access') === 'granted') {
+            document.getElementById('password-gate').style.display = 'none';
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('translate-x-full');
+            menu.classList.toggle('translate-x-0');
+        }
+
+        document.getElementById('mobileMenuToggle').addEventListener('click', toggleMobileMenu);
+        document.getElementById('closeMobileMenu').addEventListener('click', toggleMobileMenu);
+
+        // Balance Sync for Mobile
+        const originalUpdateBalance = window.updateBalanceDisplay;
+        function enhancedUpdateBalance() {
+            const balance = localStorage.getItem('csai_balance') || 1000;
+            const displays = ['balance-display', 'mobile-balance-display'];
+            displays.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = parseInt(balance).toLocaleString();
+            });
+        }
+
+        // Polling or event based sync if needed, but let's just make sure it's called
+        setInterval(enhancedUpdateBalance, 1000);
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-black/80 backdrop-blur-md border-b border-white/10"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="flex items-center space-x-2 group">
+                        <div class="main-logo-content">
+                            <img src="logos/csgo_coinlogo3.webp" alt="CSAI Logo" class="h-10 w-auto object-contain">
+                            <span class="text-3xl font-bold csgo-animated-gradient orbitron">CSAI</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#about" class="hover:text-purple-400 transition font-semibold">About</a>
+                    <a href="index.html#features" class="hover:text-purple-400 transition font-semibold">Features</a>
+                    <a href="index.html#tokenomics"
+                        class="hover:text-purple-400 transition font-semibold">Tokenomics</a>
+                    <a href="index.html#roadmap" class="hover:text-purple-400 transition font-semibold">Roadmap</a>
+                    <button id="open-inventory-btn"
+                        class="glass px-4 py-2 rounded-full font-bold text-sm text-yellow-500 hover:bg-white/10 transition flex items-center gap-2">
+                        <i class="fas fa-backpack"></i> INVENTORY
+                    </button>
+                    <div
+                        class="px-5 py-2 rounded-full flex items-center gap-3 bg-black border border-yellow-500/50 shadow-[0_0_10px_rgba(255,215,0,0.2)]">
+                        <img src="logos/csgo_coinlogo3.webp" class="w-6 h-6 drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]">
+                        <span id="balance-display"
+                            class="font-mono font-bold text-2xl tracking-wider text-white">0</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <button class="md:hidden text-white text-2xl" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+        class="fixed inset-0 z-[100] bg-black translate-x-full transition-transform duration-300 md:hidden flex flex-col p-8">
+        <div class="flex justify-between items-center mb-10">
+            <img src="logos/csgo_coinlogo3.webp" alt="Logo" class="h-10">
+            <button id="closeMobileMenu" class="text-white text-3xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6 text-2xl font-bold orbitron">
+            <a href="index.html#about" class="hover:text-yellow-500 transition">ABOUT</a>
+            <a href="index.html#features" class="hover:text-yellow-500 transition">FEATURES</a>
+            <a href="index.html#tokenomics" class="hover:text-yellow-500 transition">TOKENOMICS</a>
+            <a href="index.html#roadmap" class="hover:text-yellow-500 transition">ROADMAP</a>
+            <button onclick="document.getElementById('open-inventory-btn').click(); toggleMobileMenu();"
+                class="text-left text-yellow-500">INVENTORY</button>
+        </div>
+        <div class="mt-auto">
+            <div
+                class="px-5 py-4 rounded-xl flex items-center justify-center gap-4 bg-black border border-yellow-500/50">
+                <img src="logos/csgo_coinlogo3.webp" class="w-8 h-8">
+                <span id="mobile-balance-display" class="font-mono font-bold text-3xl text-white">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-28 pb-10 px-4">
+
+        <!-- Simulator Section -->
+        <div id="simulator-section" class="max-w-5xl mx-auto mb-16">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl md:text-5xl font-black orbitron mb-4 csgo-animated-gradient">
+                    CASE SIMULATOR
+                </h1>
+                <p class="text-gray-400">Experience authentic CS2 drop rates. Test your luck with CSAI.</p>
+            </div>
+
+            <!-- Case Display Area -->
+            <div class="glass-premium rounded-2xl p-1 relative overflow-hidden mb-8">
+                <!-- Selected Case Header -->
+                <div class="p-4 flex items-center justify-center gap-4 bg-black/20 mb-1">
+                    <img id="selected-case-img" src="" class="w-12 h-12 object-contain hidden">
+                    <h2 id="selected-case-name" class="text-xl font-bold text-white">Select a Case Below</h2>
+                </div>
+
+                <!-- Roulette -->
+                <div id="roulette-container" class="roulette-wrapper relative">
+                    <div class="center-line"></div>
+                    <!-- Fade overlay sides -->
+                    <div
+                        class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050508] to-transparent z-10 pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050508] to-transparent z-10 pointer-events-none">
+                    </div>
+
+                    <div id="roulette-track" class="roulette-track px-[50%]">
+                        <!-- Items will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="p-8 text-center bg-black/40 backdrop-blur-sm">
+                    <button id="open-btn" disabled
+                        class="glass-premium px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 neon-border text-[#ff8c00] border-[#ff8c00]/30 min-w-[200px] disabled:opacity-50 disabled:grayscale">
+                        SELECT A CASE
+                    </button>
+                    <p class="text-xs text-gray-500 mt-4">Cost: 100 CSAI per open</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Grid -->
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-2xl font-bold orbitron mb-6 pl-4 border-l-4 border-yellow-500">Available Cases</h3>
+            <div id="cases-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Cases injected via JS -->
+                <div class="col-span-full py-20 text-center">
+                    <div
+                        class="inline-block w-8 h-8 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin">
+                    </div>
+                    <p class="mt-2 text-gray-500">Loading Market Data...</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass border-t border-white/5 py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">
+                &copy; 2025 CSAI Project. Not affiliated with Valve Corporation. <br>
+                Skins and images are property of Valve. Used for simulation purposes only.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Winner Modal -->
+    <div id="winner-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div
+            class="glass-premium max-w-md w-full p-8 rounded-2xl text-center relative animate-fade-in-up border border-[#ffd700]/30 shadow-[0_0_50px_rgba(255,215,0,0.2)]">
+            <div
+                class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-[#ffd700] text-black font-bold px-6 py-2 rounded-full shadow-[0_0_20px_#ffd700]">
+                ITEM DROP
+            </div>
+
+            <div class="my-8 relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-xl">
+                </div>
+                <img id="winner-image" src="" alt="Winner"
+                    class="w-48 h-32 object-contain mx-auto relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-110 transition-transform duration-500">
+            </div>
+
+            <div id="winner-info">
+                <!-- Injected via JS -->
+            </div>
+
+            <button id="close-modal"
+                class="glass-premium px-8 py-3 rounded-full font-bold text-lg w-full mt-4 hover:scale-105 transition-all duration-300 text-[#ffd700] border border-[#ffd700]/30 shadow-[0_0_15px_rgba(255,215,0,0.3)]">
+                COLLECT ITEM
+            </button>
+        </div>
+    </div>
+
+    <!-- Inventory Modal -->
+    <div id="inventory-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-md p-4">
+        <div
+            class="glass-premium max-w-6xl w-full h-[80vh] rounded-2xl p-6 relative flex flex-col border border-yellow-500/20">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold orbitron text-yellow-500"><i class="fas fa-backpack mr-3"></i>YOUR
+                    INVENTORY</h2>
+                <button id="close-inventory-btn" class="text-gray-400 hover:text-white transition">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="flex-grow overflow-y-auto">
+                <div id="inventory-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-2">
+                    <!-- Inventory items injected here -->
+                    <p id="empty-inventory-msg" class="text-gray-500 col-span-full text-center py-20 text-xl">Inventory
+                        empty. Open items to fill it up!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/case-simulator.js" defer></script>
+</body>
+
+</html>
