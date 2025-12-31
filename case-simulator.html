@@ -20,7 +20,11 @@
     <meta property="og:type" content="website">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logos/csgo_coinlogo3.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favico/favicon-16x16.png">
+    <link rel="manifest" href="/favico/site.webmanifest">
+    <link rel="shortcut icon" href="/favico/favicon.ico">
 
     <!-- Preload Critical Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -260,7 +264,7 @@
         // Balance Sync for Mobile
         const originalUpdateBalance = window.updateBalanceDisplay;
         function enhancedUpdateBalance() {
-            const balance = localStorage.getItem('csai_balance') || 1000;
+            const balance = localStorage.getItem('csai_balance') || 100000;
             const displays = ['balance-display', 'mobile-balance-display'];
             displays.forEach(id => {
                 const el = document.getElementById(id);
@@ -464,6 +468,42 @@
     </div>
 
     <script src="js/case-simulator.js" defer></script>
+    <script>
+    (function initAndMigrateBalance() {
+        const CURRENT_VERSION = 2; // eski 1000'lik sistem = 1, yeni = 2
+    
+        const storedVersion = localStorage.getItem('csai_balance_version');
+        let balance = localStorage.getItem('csai_balance');
+    
+        // İlk defa giren kullanıcı
+        if (storedVersion === null) {
+            balance = '100000';
+            localStorage.setItem('csai_balance', balance);
+            localStorage.setItem('csai_balance_version', CURRENT_VERSION);
+        }
+    
+        // Eski sistemden kalan kullanıcı (1000 vb.)
+        else if (Number(storedVersion) < CURRENT_VERSION) {
+            balance = '100000';
+            localStorage.setItem('csai_balance', balance);
+            localStorage.setItem('csai_balance_version', CURRENT_VERSION);
+        }
+    
+        // Güvenlik: bozuk veri
+        if (balance === null || balance === '' || isNaN(balance)) {
+            balance = '100000';
+            localStorage.setItem('csai_balance', balance);
+        }
+    
+        // UI güncelle
+        const ids = ['balance-display', 'mobile-balance-display'];
+        ids.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = Number(balance).toLocaleString();
+        });
+    })();
+    </script>
+
 </body>
 
 </html>
