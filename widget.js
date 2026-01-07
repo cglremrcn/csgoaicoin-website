@@ -664,11 +664,19 @@
 
             .notification-bubble {
                 position: fixed !important;
-                bottom: 85px !important;
-                right: 20px !important;
+                bottom: 80px !important;
+                right: 10px !important;
+                left: auto !important;
                 margin-bottom: 0 !important;
                 z-index: 999999;
-                max-width: 200px;
+                max-width: 170px;
+                font-size: 10px;
+                padding: 6px 10px;
+            }
+
+            .notification-bubble::after {
+                right: 12px !important;
+                bottom: -6px !important;
             }
 
             /* Hide button when chat is open */
