@@ -662,6 +662,15 @@
                 box-shadow: 0 4px 20px rgba(0,0,0,0.6);
             }
 
+            .notification-bubble {
+                position: fixed !important;
+                bottom: 85px !important;
+                right: 20px !important;
+                margin-bottom: 0 !important;
+                z-index: 999999;
+                max-width: 200px;
+            }
+
             /* Hide button when chat is open */
             .chat-button.open {
                 display: none !important;
